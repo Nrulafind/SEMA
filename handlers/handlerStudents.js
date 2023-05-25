@@ -83,7 +83,12 @@ async function updateStudent(req, res) {
             return res.status(404).json({ error: 'Student not found' });
         }
 
-        await studentRef.update(updatedData);
+        // Check if the request is a PUT or PATCH
+        if (req.method === 'PUT') {
+            await studentRef.set(updatedData);
+        } else if (req.method === 'PATCH') {
+            await studentRef.update(updatedData);
+        }
 
         // Return a success message or any relevant response
         res.json({ message: 'Student updated successfully' });
