@@ -43,8 +43,21 @@ async function createStudent(req, res) {
         // Extract the necessary data from the request body
         const { ID, nama } = req.body;
 
+        // Check if ID or nama is missing or empty
+        if (!ID || !nama || ID.trim() === '' || nama.trim() === '') {
+            res.status(400).json({ error: 'Invalid student data' });
+            return; // Return here to stop further execution
+        }
+
         // Implement logic to create a new student in Firestore or any other data source
         // For example, using Firestore:
+
+        // Ensure the ID field has a valid value
+        if (typeof ID !== 'string' || ID.trim() === '') {
+            res.status(400).json({ error: 'Invalid student ID' });
+            return; // Return here to stop further execution
+        }
+
         const studentRef = await firestore.collection('student').add({ ID, nama });
 
         // Return the ID of the created student as a response
@@ -54,6 +67,7 @@ async function createStudent(req, res) {
         res.status(500).json({ error: 'Something went wrong' });
     }
 }
+
 
 async function updateStudent(req, res) {
     try {
