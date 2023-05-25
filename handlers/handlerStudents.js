@@ -12,23 +12,26 @@ const firestore = new Firestore({
 
 async function getStudents(req, res) {
     try {
-        const { id } = req.params;
-
-        // Implement logic to fetch a specific student from Firestore or any other data source
+        // Implement logic to fetch all students from Firestore or any other data source
         // For example, using Firestore:
-        const studentDoc = await firestore.collection('students').doc(id).get();
+        const studentsSnapshot = await firestore.collection('student').get();
 
-        if (!studentDoc.exists) {
-            return res.status(404).json({ error: 'Student not found' });
+        if (studentsSnapshot.empty) {
+            return res.status(404).json({ error: 'No students found' });
         }
 
-        const student = {
-            id: studentDoc.id,
-            ...studentDoc.data(),
-        };
+        const students = [];
 
-        // Return the fetched student as a response
-        res.json(student);
+        studentsSnapshot.forEach((studentDoc) => {
+            const student = {
+                id: studentDoc.id,
+                ...studentDoc.data(),
+            };
+            students.push(student);
+        });
+
+        // Return the fetched students as a response
+        res.json(students);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Something went wrong' });
