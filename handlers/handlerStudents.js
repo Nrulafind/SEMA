@@ -45,7 +45,7 @@ async function createStudent(req, res) {
 
         // Implement logic to create a new student in Firestore or any other data source
         // For example, using Firestore:
-        const studentRef = await firestore.collection('students').add({ ID, nama });
+        const studentRef = await firestore.collection('student').add({ ID, nama });
 
         // Return the ID of the created student as a response
         res.json({ id: studentRef.id });
@@ -62,7 +62,7 @@ async function updateStudent(req, res) {
 
         // Implement logic to update a specific student in Firestore or any other data source
         // For example, using Firestore:
-        const studentRef = firestore.collection('students').doc(id);
+        const studentRef = firestore.collection('student').doc(id);
         const studentDoc = await studentRef.get();
 
         if (!studentDoc.exists) {
@@ -85,7 +85,7 @@ async function deleteStudent(req, res) {
 
         // Implement logic to delete a specific student from Firestore or any other data source
         // For example, using Firestore:
-        const studentRef = firestore.collection('students').doc(id);
+        const studentRef = firestore.collection('student').doc(id);
         const studentDoc = await studentRef.get();
 
         if (!studentDoc.exists) {
