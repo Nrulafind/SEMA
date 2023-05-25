@@ -1,0 +1,17 @@
+{
+  "name": "sema",
+  "version": "1.0.0",
+  "description": "Repository for Capstone Product Based Bangkit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "@google-cloud/firestore": "^4.7.2",
+    "firestore": "^1.1.6"
+  }
+}

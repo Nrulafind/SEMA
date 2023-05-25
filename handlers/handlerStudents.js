@@ -1,0 +1,107 @@
+const Firestore = require('@google-cloud/firestore');
+const serviceAccount = require('../service-account/service-account-key.json');
+
+// Initialize Firestore with service account credentials
+const firestore = new Firestore({
+    projectId: serviceAccount.project_id,
+    credentials: {
+        client_email: serviceAccount.client_email,
+        private_key: serviceAccount.private_key,
+    },
+});
+
+async function getStudents(req, res) {
+    try {
+        const { id } = req.params;
+
+        // Implement logic to fetch a specific student from Firestore or any other data source
+        // For example, using Firestore:
+        const studentDoc = await firestore.collection('students').doc(id).get();
+
+        if (!studentDoc.exists) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        const student = {
+            id: studentDoc.id,
+            ...studentDoc.data(),
+        };
+
+        // Return the fetched student as a response
+        res.json(student);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+}
+
+async function createStudent(req, res) {
+    try {
+        // Extract the necessary data from the request body
+        const { ID, nama } = req.body;
+
+        // Implement logic to create a new student in Firestore or any other data source
+        // For example, using Firestore:
+        const studentRef = await firestore.collection('students').add({ ID, nama });
+
+        // Return the ID of the created student as a response
+        res.json({ id: studentRef.id });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+}
+
+async function updateStudent(req, res) {
+    try {
+        const { id } = req.params;
+        const updatedData = req.body;
+
+        // Implement logic to update a specific student in Firestore or any other data source
+        // For example, using Firestore:
+        const studentRef = firestore.collection('students').doc(id);
+        const studentDoc = await studentRef.get();
+
+        if (!studentDoc.exists) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        await studentRef.update(updatedData);
+
+        // Return a success message or any relevant response
+        res.json({ message: 'Student updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+}
+
+async function deleteStudent(req, res) {
+    try {
+        const { id } = req.params;
+
+        // Implement logic to delete a specific student from Firestore or any other data source
+        // For example, using Firestore:
+        const studentRef = firestore.collection('students').doc(id);
+        const studentDoc = await studentRef.get();
+
+        if (!studentDoc.exists) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        await studentRef.delete();
+
+        // Return a success message or any relevant response
+        res.json({ message: 'Student deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+}
+
+module.exports = {
+    getStudents,
+    createStudent,
+    updateStudent,
+    deleteStudent,
+};
