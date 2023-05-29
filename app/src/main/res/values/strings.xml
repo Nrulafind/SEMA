@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Parenting App</string>
+    <string name="send_success">Berhasil terkirim</string>
+    <string name="send_error">Gagal terkirim</string>
+    <string name="notif_headlines">This is a notification</string>
+    <string name="notif_description">This is a notification description</string>
+    <string name="delete">this is delete button</string>
+    <string name="title_activity_score">ScoreActivity</string>
+    <string name="home">Home</string>
+    <string name="score">Score</string>
+    <string name="absent">Attendance</string>
+    <string name="profile">Profile</string>
+    <string name="list_course">Daftar Mata Pelajaran</string>
+    <string name="back">Back</string>
+    <string name="data_siswa">DATA SISWA</string>
+    <string name="nilai">NILAI</string>
+    <string name="lulus">Lulus</string>
+    <string name="student_name">Jeon Jungkook</string>
+    <string name="student_grade">11-A</string>
+    <string name="student_semester">Semester Genap</string>
+    <string name="student_status">Outstanding Student</string>
+</resources>
