@@ -1,8 +1,9 @@
-package com.example.parentingapp
+package com.example.parentingapp.ui.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.parentingapp.R
+import com.example.parentingapp.JetParentingApp
 import com.example.parentingapp.data.Course
 import com.example.parentingapp.data.dummyCourseMenu
 import com.example.parentingapp.ui.components.BottomBaritem
@@ -37,7 +40,7 @@ class ScoreActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     ParentingAppTheme {
-                        ScorePage()
+                        JetParentingApp()
                     }
                 }
             }
@@ -46,7 +49,10 @@ class ScoreActivity : ComponentActivity() {
 }
 
 @Composable
-fun ScorePage(modifier: Modifier = Modifier) {
+fun ScorePage(
+    modifier: Modifier = Modifier,
+    navigateToDetail: (String) -> Unit,
+) {
     Scaffold(bottomBar = { BottomBar() }
     ) { innerPadding ->
         Column(
@@ -55,7 +61,7 @@ fun ScorePage(modifier: Modifier = Modifier) {
         ) {
             HomeSection(
                 title = stringResource(id = R.string.list_course),
-                content = { CourseMenu(dummyCourseMenu) }
+                content = { CourseMenu(dummyCourseMenu, navigateToDetail) }
             )
         }
     }
@@ -107,6 +113,7 @@ fun BottomBar(
 @Composable
 fun CourseMenu(
     listCourse: List<Course>,
+    navigateToDetail: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -114,14 +121,17 @@ fun CourseMenu(
         columns = GridCells.Fixed(2),
         content = {
             items(listCourse.size) {
-                ScoreItem(course = listCourse[it], modifier.padding(8.dp))
+                ScoreItem(course = listCourse[it],
+                    modifier
+                        .padding(8.dp)
+                        .clickable { navigateToDetail(listCourse[it].title) })
             }
         })
 }
 
 @Composable
 @Preview(showBackground = true, device = Devices.PIXEL_4)
-fun ScoreActivityPreview(){
+fun ScoreActivityPreview() {
     ParentingAppTheme {
         ScoreActivity()
     }

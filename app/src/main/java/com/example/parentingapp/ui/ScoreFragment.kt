@@ -1,13 +1,11 @@
 package com.example.parentingapp.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,15 +23,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.Fragment
+import com.example.parentingapp.JetParentingApp
 import com.example.parentingapp.R
-import com.example.parentingapp.ScoreActivity
-import com.example.parentingapp.ScorePage
 import com.example.parentingapp.data.Course
 import com.example.parentingapp.data.dummyCourseMenu
 import com.example.parentingapp.databinding.FragmentScoreBinding
 import com.example.parentingapp.ui.components.BottomBaritem
 import com.example.parentingapp.ui.components.HomeSection
 import com.example.parentingapp.ui.components.ScoreItem
+import com.example.parentingapp.ui.home.ScoreActivity
 import com.example.parentingapp.ui.theme.ParentingAppTheme
 
 
@@ -44,8 +43,9 @@ class ScoreFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
         return ComposeView(requireContext()).apply {
             setContent {
                 ParentingAppTheme {
@@ -53,7 +53,7 @@ class ScoreFragment : Fragment() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colors.background
                     ) {
-                        ScorePage()
+                        JetParentingApp()
                     }
                 }
             }
@@ -61,7 +61,7 @@ class ScoreFragment : Fragment() {
     }
 
     @Composable
-    fun ScorePage(modifier: Modifier = Modifier) {
+    fun ScorePage(modifier: Modifier = Modifier, navigateToDetail: (String) -> Unit) {
         Scaffold(bottomBar = { BottomBar() }
         ) { innerPadding ->
             Column(
@@ -70,7 +70,12 @@ class ScoreFragment : Fragment() {
             ) {
                 HomeSection(
                     title = stringResource(id = R.string.list_course),
-                    content = { CourseMenu(dummyCourseMenu) }
+                    content = {
+                        CourseMenu(
+                            dummyCourseMenu,
+                            navigateToDetail
+                        )
+                    }
                 )
             }
         }
@@ -122,6 +127,7 @@ class ScoreFragment : Fragment() {
     @Composable
     fun CourseMenu(
         listCourse: List<Course>,
+        navigateToDetail: (String) -> Unit,
         modifier: Modifier = Modifier,
     ) {
         LazyVerticalGrid(
@@ -129,19 +135,23 @@ class ScoreFragment : Fragment() {
             columns = GridCells.Fixed(2),
             content = {
                 items(listCourse.size) {
-                    ScoreItem(course = listCourse[it], modifier.padding(8.dp))
+                    ScoreItem(
+                        course = listCourse[it],
+                        modifier
+                            .padding(8.dp)
+                            .clickable { navigateToDetail(listCourse[it].title) })
                 }
             })
     }
 
     @Composable
     @Preview(showBackground = true, device = Devices.PIXEL_4)
-    fun ScoreActivityPreview(){
+    fun ScoreActivityPreview() {
         ParentingAppTheme {
             ScoreActivity()
         }
     }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -81,72 +81,81 @@ fun StudentData(
     Card(
         modifier = modifier
             .width(350.dp)
-            .height(200.dp),
+            .height(150.dp),
         shape = RoundedCornerShape(10.dp),
         backgroundColor = colorResource(id = R.color.light_yellow)
     ) {
-        Column {
-            Text(
-                text = stringResource(
-                    id = R.string.data_siswa
-                ),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 8.dp),
-                color = colorResource(id = R.color.black)
-            )
-        }
-        Column(modifier = Modifier.padding(8.dp)) {
-            Text(
-                text = dummyUser.name,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .padding(start = 8.dp),
-                color = Color.Black
-            )
-            Text(
-                text = dummyUser.grade,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(start = 8.dp),
-                color = Color.Black
-            )
-            Text(
-                text = dummyUser.semester,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(start = 8.dp, bottom = 8.dp),
-                color = Color.Black
-            )
-            Box {
-                Box(
-                    modifier = Modifier
-                        .background(colorResource(id = R.color.white_40opacity))
-                        .width(350.dp)
-                        .height(30.dp)
-                        .clip(RoundedCornerShape(15.dp))
-                        .padding(bottom = 8.dp)
-                        .align(Alignment.BottomCenter)
-                )
-                Text(
-                    text = dummyUser.status,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = 7.dp)
-                )
+        HomeSection(title = stringResource(
+            id = R.string.data_siswa
+        ),
+            content = {
+                Column {
+                    Text(
+                        text = dummyUser.name,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.padding(start = 10.dp),
+                        color = Color.Black
+                    )
+                    Text(
+                        text = dummyUser.grade,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.padding(start = 10.dp),
+                        color = Color.Black
+                    )
+                    Text(
+                        text = dummyUser.semester,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.padding(start = 10.dp, bottom = 8.dp),
+                        color = Color.Black
+                    )
+                    Box {
+                        Box(
+                            modifier = Modifier
+                                .background(colorResource(id = R.color.white_40opacity))
+                                .width(350.dp)
+                                .height(30.dp)
+                                .clip(RoundedCornerShape(15.dp))
+                                .padding(8.dp)
+                                .align(Alignment.BottomCenter)
+                        )
+                        Text(
+                            text = dummyUser.status,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black,
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .padding(bottom = 7.dp)
+                        )
+                    }
+                }
             }
+        )
+//                Column {
+//            Text(
+//                text = stringResource(
+//                    id = R.string.data_siswa
+//                ),
+//                fontSize = 18.sp,
+//                fontWeight = FontWeight.Bold,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .padding(top = 8.dp),
+//                color = colorResource(id = R.color.black)
+//            )
+//        }
+//                Spacer (modifier = Modifier.padding(8.dp))
+//                Column {
 
-        }
+
+//        }
     }
 }
 
@@ -175,31 +184,27 @@ fun ListScore(
         modifier = modifier
             .width(350.dp),
         shape = RoundedCornerShape(10.dp),
-        backgroundColor = colorResource(id = R.color.light_pink)
+        backgroundColor = colorResource(id = R.color.light_pink),
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
                 .fillMaxWidth()
-                .padding(16.dp),
         ) {
             Column {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(4.dp)
                         .fillMaxWidth()
                 ) {
                     Box(
                         modifier = Modifier
                             .size(10.dp)
                             .background(colorResource(id = R.color.teal_200))
-                            .padding(8.dp)
 //                            .align(Alignment.Top)
                     )
                     Text(
                         text = stringResource(id = R.string.lulus),
-                        modifier = Modifier.padding(8.dp),
+                        modifier = Modifier.padding(start = 8.dp),
                         textAlign = TextAlign.Start,
                         fontSize = 10.sp,
                         color = Color.White
@@ -207,7 +212,7 @@ fun ListScore(
                 }
                 Text(
                     text = score.name,
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(start = 8.dp),
                     textAlign = TextAlign.Start,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
@@ -215,27 +220,20 @@ fun ListScore(
                 )
                 Text(
                     text = score.kkm,
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(start = 8.dp),
                     textAlign = TextAlign.Start,
                     fontSize = 10.sp,
                     color = Color.White
                 )
             }
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            Text(
-                text = score.score,
-                modifier = Modifier.padding(8.dp),
-                textAlign = TextAlign.End,
-                fontSize = 35.sp,
-                color = Color.White
-            )
-        }
+        Text(
+            text = score.score,
+            modifier = Modifier.padding(8.dp),
+            textAlign = TextAlign.Right,
+            fontSize = 35.sp,
+            color = Color.White
+        )
     }
 }
 
@@ -248,10 +246,10 @@ fun DetailTopBar(
         elevation = 0.dp,
         title = {
             Text(
-                text = stringResource(id = R.string.app_name),
-                style = MaterialTheme.typography.h2,
+                text = "Detail Nilai",
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp
+                fontSize = 30.sp,
+                color = Color.White
             )
         },
         navigationIcon = {
@@ -260,11 +258,13 @@ fun DetailTopBar(
             }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
+                    tint = Color.White,
                     contentDescription = stringResource(id = R.string.back),
                 )
             }
         },
-        modifier = modifier
+        modifier = modifier,
+        backgroundColor = colorResource(id = R.color.light_blue)
     )
 }
 
