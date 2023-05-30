@@ -4,14 +4,16 @@
   "description": "Repository for Capstone Product Based Bangkit",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "@google-cloud/firestore": "^4.7.2",
+    "@tensorflow/tfjs-node": "^4.6.0",
+    "express": "^4.17.1",
     "firestore": "^1.1.6"
   }
 }
