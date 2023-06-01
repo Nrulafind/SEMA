@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { performInference } = require('../handlers/handlerMl');
 
-// Import the ML handlers
-const { performInference } = require('../handlers/mlHandler');
-
-// ML inference route (POST)
+// ML inference route post
 router.post('/inference', performInference);
 
 // Export the ML routes

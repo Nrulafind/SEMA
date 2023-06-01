@@ -14,13 +14,18 @@ const tfliteModel = new Uint8Array(model);
 // Initialize the TensorFlow Lite interpreter
 const interpreter = new tf.Interpreter(tfliteModel);
 
+// Import the io object from handlerChat.js
+const { io } = require('./handlers/handlerChat');
+
+// Set the io object in the app for access in routes for the chat 
+app.set('socketio', io);
 
 // Import routes
 const StudentsRoutes = require('./routes/routeStudents');
 const AuthRoutes = require('./routes/routeAuth');
 const ChatRoutes = require('./routes/routeChat');
 const NotificationRoutes = require('./routes/routeNotification');
-const mlRoutes = require('./routes/mlRoutes');
+const mlRoutes = require('./routes/routeMl');
 
 // Parse JSON request bodies
 app.use(express.json());

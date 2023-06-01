@@ -14,8 +14,7 @@ async function signUp(req, res) {
     try {
         const { email, password } = req.body;
 
-        // Implement logic to create a new user document in your Firestore collection
-        // For example:
+        //  create a new user document in your Firestore collection
         const userRef = firestore.collection('users').doc();
         await userRef.set({ email, password });
 
@@ -31,8 +30,7 @@ async function signIn(req, res) {
     try {
         const { email, password } = req.body;
 
-        // Implement logic to check if a user document with the provided email and password exists in your Firestore collection
-        // For example:
+        //check if a user document with the provided email and password exists in your Firestore collection
         const userQuery = firestore.collection('users').where('email', '==', email).where('password', '==', password);
         const userSnapshot = await userQuery.get();
 

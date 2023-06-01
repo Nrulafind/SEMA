@@ -15,14 +15,25 @@ const firestore = new Firestore({
 
 async function sendNotification(req, res) {
     try {
-        // Extract the necessary data from the request body
+        // Extract the data from the request body
         const { token, title, body } = req.body;
 
-        // Implement logic to send the notification
-        // For example, you can use a notification service or FCM
+        // Save the notification data to Firestore
+        const notificationData = {
+            token,
+            title,
+            body,
+            timestamp: new Date(),
+        };
 
-        // Return a success message or any relevant response
-        res.json({ message: 'Notification sent successfully' });
+        const notificationRef = await firestore.collection('notifications').add(notificationData);
+
+        //send the notification
+        const notificationService = new NotificationService();
+        notificationService.sendNotification(token, title, body);
+
+        // Return a success message 
+        res.json({ message: 'Notification sent successfully', notificationId: notificationRef.id });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Something went wrong' });

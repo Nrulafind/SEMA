@@ -12,23 +12,43 @@ const firestore = new Firestore({
     },
 });
 
+const socketIO = require('socket.io');
 
-async function sendMessage(req, res) {
-    try {
-        // Extract the necessary data from the request body
-        const { sender, receiver, message } = req.body;
+// Create a Socket.io server
+const server = require('http').createServer();
+const io = socketIO(server);
 
-        // Implement logic to send the message
-        // For example, you can use a messaging service or emit events to sockets
+// Handle incoming Socket.io connections
+io.on('connection', (socket) => {
+    console.log('New Socket.io connection');
 
-        // Return a success message or any relevant response
-        res.json({ message: 'Message sent successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Something went wrong' });
-    }
-}
+    // Handle incoming messages from the Socket.io client
+    socket.on('sendMessage', async (data) => {
+        try {
+            const { sender, receiver, message } = data;
+
+            // Send the message and record it in Firestore
+            const messageRef = await firestore.collection('chat').add({
+                sender,
+                receiver,
+                message,
+                timestamp: new Date().toISOString(),
+            });
+
+            // Emit the received message to all connected Socket.io clients
+            io.emit('messageReceived', {
+                id: messageRef.id,
+                sender,
+                receiver,
+                message,
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    });
+});
 
 module.exports = {
-    sendMessage,
+    io, // Export the io 
 };

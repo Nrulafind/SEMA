@@ -12,8 +12,7 @@ const firestore = new Firestore({
 
 async function getStudents(req, res) {
     try {
-        // Implement logic to fetch all students from Firestore or any other data source
-        // For example, using Firestore:
+        //fetch all students from Firestore or any other data source
         const studentsSnapshot = await firestore.collection('student').get();
 
         if (studentsSnapshot.empty) {
@@ -40,19 +39,17 @@ async function getStudents(req, res) {
 
 async function createStudent(req, res) {
     try {
-        // Extract the necessary data from the request body
+        // Extract the data from the request body
         const { ID, nama } = req.body;
 
-        // Check if ID or nama is missing or empty
+        // Check ID or nama  
         if (!ID || !nama || ID.trim() === '' || nama.trim() === '') {
             res.status(400).json({ error: 'Invalid student data' });
             return; // Return here to stop further execution
         }
 
-        // Implement logic to create a new student in Firestore or any other data source
-        // For example, using Firestore:
-
-        // Ensure the ID field has a valid value
+        // create a new student in Firestore or any other data source
+        // Check ID field has a valid value
         if (typeof ID !== 'string' || ID.trim() === '') {
             res.status(400).json({ error: 'Invalid student ID' });
             return; // Return here to stop further execution
@@ -74,8 +71,7 @@ async function updateStudent(req, res) {
         const { id } = req.params;
         const updatedData = req.body;
 
-        // Implement logic to update a specific student in Firestore or any other data source
-        // For example, using Firestore:
+        // update a specific student in Firestore or any other data source
         const studentRef = firestore.collection('student').doc(id);
         const studentDoc = await studentRef.get();
 
@@ -83,14 +79,14 @@ async function updateStudent(req, res) {
             return res.status(404).json({ error: 'Student not found' });
         }
 
-        // Check if the request is a PUT or PATCH
+        // Check the request is a PUT or PATCH
         if (req.method === 'PUT') {
             await studentRef.set(updatedData);
         } else if (req.method === 'PATCH') {
             await studentRef.update(updatedData);
         }
 
-        // Return a success message or any relevant response
+        // Return a success message 
         res.json({ message: 'Student updated successfully' });
     } catch (error) {
         console.error(error);
@@ -102,8 +98,7 @@ async function deleteStudent(req, res) {
     try {
         const { id } = req.params;
 
-        // Implement logic to delete a specific student from Firestore or any other data source
-        // For example, using Firestore:
+        // delete a specific student from Firestore or any other data source
         const studentRef = firestore.collection('student').doc(id);
         const studentDoc = await studentRef.get();
 
