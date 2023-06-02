@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 //initialize the Firebase admin SDK with service acoouunt credential
 const serviceAccount = require('../service-account/service-account-key.json');
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount)
 });
 
 //middleware for function token authentication
@@ -26,4 +26,4 @@ function authenticate(req, res, next) {
         });
 }
 
-module.exports = authenticate;
+module.exports = { authenticate, admin };

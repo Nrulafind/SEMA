@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authenticate = require('../middleware/authMiddleware');
+const { authenticate } = require('../middleware/authMiddleware');
 const { getStudents, createStudent, updateStudent, deleteStudent } = require('../handlers/handlerStudents');
 
 router.get('/', authenticate, getStudents);
