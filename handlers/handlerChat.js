@@ -14,9 +14,11 @@ const firestore = new Firestore({
 
 const socketIO = require('socket.io');
 
+// Import the Express app object
+const app = require('../index');
+
 // Create a Socket.io server
-const server = require('http').createServer();
-const io = socketIO(server);
+const io = socketIO(app);
 
 // Handle incoming Socket.io connections
 io.on('connection', (socket) => {
@@ -49,6 +51,13 @@ io.on('connection', (socket) => {
     });
 });
 
+// Define the sendMessage function and export it
+const sendMessage = (req, res) => {
+    // Handle sending the message
+    res.send('Message sent successfully');
+};
+
 module.exports = {
     io, // Export the io 
+    sendMessage,
 };
