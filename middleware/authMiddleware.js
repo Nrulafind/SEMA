@@ -1,18 +1,29 @@
-const jwt = require('jsonwebtoken');
+const admin = require('firebase-admin');
 
-//middleware to verify the JWT token
-function authenticateToken(req, res, next) {
-    //get the token from the request 
-    const token = req.header('Authorization')?.split('')[1];
+//initialize the Firebase admin SDK with service acoouunt credential
+const serviceAccount = require('../path/to/service-account-key.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+});
+
+//middleware for function token authentication
+function authenticate(req, res, next) {
+    const token = req.headers.authorization;
 
     if (!token) {
-        return res.status(401).json({ message: 'Acces denied. Token Missing' });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    try {
-        //verify the token and extract the payload
-        const payload = jwt.verify(token, '');
-
-    }
-
+    // Verify the token using Firebase Admin SDK
+    admin.auth().verifyIdToken(token)
+        .then((decodedToken) => {
+            req.userId = decodedToken.uid;
+            next();
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(403).json({ error: 'Invalid token' });
+        });
 }
+
+module.exports = authenticate;
