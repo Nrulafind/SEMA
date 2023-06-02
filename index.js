@@ -3,21 +3,6 @@ const app = express();
 const port = 3000;
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware');
-const generateToken = require('./test/generateToken');
-
-// Generate a custom token
-
-app.get('/generate-token', (req, res) => {
-    const uid = 'lNsavuDkuUOolppOkLaU7h3u69v2';//uid for the token later
-    generateToken(uid)
-        .then((token) => {
-            res.json({ token });
-        })
-        .catch((error) => {
-            console.error('Error generating token', error);
-            res.status(500).json({ error: 'Failed to generate token' });
-        });
-});
 
 app.use('/api/private', authenticate); //implemnt middleware
 
