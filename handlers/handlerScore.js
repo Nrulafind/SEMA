@@ -43,37 +43,6 @@ async function getStudents(req, res) {
     }
 }
 
-async function getDetailStudents(req, res) {
-    try {
-        const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
-        //fetch all students from Firestore or any other data source
-        const studentsSnapshot = await firestore
-            .collection('student')
-            .where('userId', '==', userId)
-            .get();
-
-        if (studentsSnapshot.empty) {
-            return res.status(404).json({ error: 'No students found' });
-        }
-
-        const students = [];
-
-        studentsSnapshot.forEach((studentDoc) => {
-            const student = {
-                id: studentDoc.id,
-                ...studentDoc.data(),
-            };
-            students.push(student);
-        });
-
-        // Return the fetched students as a response
-        res.json(students);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Something went wrong' });
-    }
-}
-
 async function createStudent(req, res) {
     try {
         const userId = req.headers['X-User-Id'];// Retrieve the user ID from the custom header
@@ -157,7 +126,6 @@ async function deleteStudent(req, res) {
 
 module.exports = {
     getStudents: [authenticate, getStudents],
-    getDetailStudents: [authenticate, getDetailStudents],
     createStudent: [authenticate, createStudent],
     updateStudent: [authenticate, updateStudent],
     deleteStudent: [authenticate, deleteStudent],
