@@ -1,5 +1,8 @@
-const modelFile = './models/model.tflite';
-const interpreter = new tf.Interpreter(fs.readFileSync(modelFile));
+const fs = require('fs');
+const modelFile = '../models/model.tflite';
+const modelData = fs.readFileSync(modelFile);
+const interpreter = new tf.Interpreter(modelData);
+
 
 // Function to perform inference using the TensorFlow Lite model
 function performInference(req, res) {
