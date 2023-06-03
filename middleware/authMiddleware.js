@@ -17,6 +17,7 @@ function authenticate(req, res, next) {
     // Verify the token using Firebase Admin SDK
     admin.auth().verifyIdToken(token)
         .then((decodedToken) => {
+            req.headers['X-User-Id'] = decodedToken.uid; // Store the userId in a custom header
             req.userId = decodedToken.uid;
             next();
         })

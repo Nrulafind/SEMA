@@ -1,5 +1,7 @@
 const Firestore = require('@google-cloud/firestore');
 const serviceAccount = require('../service-account/service-account-key.json');
+const { authenticate } = require('../middleware/authMiddleware');
+
 
 // Initialize Firestore with service account credentials
 const firestore = new Firestore({
@@ -12,8 +14,12 @@ const firestore = new Firestore({
 
 async function getStudents(req, res) {
     try {
+        const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         //fetch all students from Firestore or any other data source
-        const studentsSnapshot = await firestore.collection('student').get();
+        const studentsSnapshot = await firestore
+            .collection('student')
+            .where('userId', '==', userId)
+            .get();
 
         if (studentsSnapshot.empty) {
             return res.status(404).json({ error: 'No students found' });
@@ -39,6 +45,7 @@ async function getStudents(req, res) {
 
 async function createStudent(req, res) {
     try {
+        const userId = req.headers['X-User-Id'];// Retrieve the user ID from the custom header
         // Extract the data from the request body
         const { ID, nama } = req.body;
 
@@ -68,6 +75,7 @@ async function createStudent(req, res) {
 
 async function updateStudent(req, res) {
     try {
+        const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         const { id } = req.params;
         const updatedData = req.body;
 
@@ -96,8 +104,8 @@ async function updateStudent(req, res) {
 
 async function deleteStudent(req, res) {
     try {
+        const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         const { id } = req.params;
-
         // delete a specific student from Firestore or any other data source
         const studentRef = firestore.collection('student').doc(id);
         const studentDoc = await studentRef.get();
@@ -117,8 +125,8 @@ async function deleteStudent(req, res) {
 }
 
 module.exports = {
-    getStudents,
-    createStudent,
-    updateStudent,
-    deleteStudent,
+    getStudents: [authenticate, getStudents],
+    createStudent: [authenticate, createStudent],
+    updateStudent: [authenticate, updateStudent],
+    deleteStudent: [authenticate, deleteStudent],
 };

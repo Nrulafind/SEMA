@@ -17,12 +17,13 @@ async function sendNotification(req, res) {
     try {
         // Extract the data from the request body
         const { token, title, body } = req.body;
-
+        const userId = req.userId; // Access the authenticated user's ID using req.userId
         // Save the notification data to Firestore
         const notificationData = {
             token,
             title,
             body,
+            userId,
             timestamp: new Date(),
         };
 

@@ -1,5 +1,4 @@
 // handlerChat.js
-
 const Firestore = require('@google-cloud/firestore');
 const serviceAccount = require('../service-account/service-account-key.json');
 
@@ -53,6 +52,8 @@ io.on('connection', (socket) => {
 
 // Define the sendMessage function and export it
 const sendMessage = (req, res) => {
+    // Access the authenticated user's ID using req.userId
+    const userId = req.userId;
     // Handle sending the message
     res.send('Message sent successfully');
 };
