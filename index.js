@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware');
 
@@ -38,6 +37,12 @@ app.use('/api/private/Chat', ChatRoutes);
 app.use('/api/private/Notification', NotificationRoutes);
 app.use('/api/private/ml', mlRoutes);
 
+app.get("/", (req, res) => {
+    console.log("Response success")
+    res.send("Response Success!")
+})
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log('Hello world listening on port', port);
 });
