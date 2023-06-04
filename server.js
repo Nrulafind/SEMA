@@ -32,7 +32,6 @@ const StudentsRoutes = require('./routes/routeStudents');
 const ChatRoutes = require('./routes/routeChat');
 const NotificationRoutes = require('./routes/routeNotification');
 const mlRoutes = require('./routes/routeMl');
-const ScoreRoutes = require('./routes/routeScore');
 
 // Parse JSON request bodies
 app.use(express.json());
