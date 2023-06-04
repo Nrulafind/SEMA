@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware');
 
+app.get('/api/public', (req, res) => {
+    // Perform actions for the public route
+    const message = `Connect Successfully`;
+    res.json({ message });
+});
 app.use('/api/private', authenticate); //implemnt middleware
 
 app.get('/api/private/data', authenticate, (req, res) => {
@@ -28,6 +32,7 @@ const StudentsRoutes = require('./routes/routeStudents');
 const ChatRoutes = require('./routes/routeChat');
 const NotificationRoutes = require('./routes/routeNotification');
 const mlRoutes = require('./routes/routeMl');
+const ScoreRoutes = require('./routes/routeScore');
 
 // Parse JSON request bodies
 app.use(express.json());
@@ -38,6 +43,8 @@ app.use('/api/private/Chat', ChatRoutes);
 app.use('/api/private/Notification', NotificationRoutes);
 app.use('/api/private/ml', mlRoutes);
 
+
+const port = 3000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

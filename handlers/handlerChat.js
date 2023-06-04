@@ -14,7 +14,7 @@ const firestore = new Firestore({
 const socketIO = require('socket.io');
 
 // Import the Express app object
-const app = require('../index');
+const app = require('../server');
 
 // Create a Socket.io server
 const io = socketIO(app);
