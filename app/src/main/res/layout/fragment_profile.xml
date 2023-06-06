@@ -8,12 +8,12 @@
     android:padding="16dp"
     tools:context=".ui.ProfileFragment">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/biologi"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="72dp"
+        tools:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
         tools:text="@string/username"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar" />
@@ -35,34 +36,204 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/email"
         android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <TextView
-        android:id="@+id/userId"
+        android:id="@+id/tv_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/userId"
-        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        android:text="@string/parent_name"
+        android:textSize="16sp"
         android:textStyle="italic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
+
+    <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_parent" />
+
+    <ImageView
+        android:id="@+id/ic_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="130dp"
+        android:src="@drawable/baseline_edit_24"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/avatar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_language"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_setting"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/tv_setting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_setting">
+
+
+        <ImageView
+            android:id="@+id/ic_language"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_language"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/language"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_language"
+            app:layout_constraintStart_toEndOf="@+id/ic_language"
+            app:layout_constraintTop_toTopOf="@+id/ic_language" />
+
+        <ImageView
+            android:id="@+id/ic_forward_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_accessbility"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/cl_language"
+        app:layout_constraintStart_toStartOf="@+id/cl_language"
+        app:layout_constraintTop_toBottomOf="@+id/cl_language">
+
+
+        <ImageView
+            android:id="@+id/ic_accessbility"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_accessbility"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_accessbility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/accessbility"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_accessbility"
+            app:layout_constraintStart_toEndOf="@+id/ic_accessbility"
+            app:layout_constraintTop_toTopOf="@+id/ic_accessbility" />
+
+        <ImageView
+            android:id="@+id/ic_forward_accessbility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_theme"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/cl_accessbility"
+        app:layout_constraintStart_toStartOf="@+id/cl_accessbility"
+        app:layout_constraintTop_toBottomOf="@+id/cl_accessbility">
+
+
+        <ImageView
+            android:id="@+id/ic_theme"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_theme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/theme"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_theme"
+            app:layout_constraintStart_toEndOf="@+id/ic_theme"
+            app:layout_constraintTop_toTopOf="@+id/ic_theme" />
+
+        <ImageView
+            android:id="@+id/ic_forward_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="23dp"
         android:background="@drawable/button_yellow"
         android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_theme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

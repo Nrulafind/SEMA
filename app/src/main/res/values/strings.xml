@@ -44,12 +44,16 @@
     <string name="attendance">Absensi</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
-    <string name="userId">NIS</string>
-    <string name="logout">Logout</string>
+    <string name="parent_name">Wali Murid</string>
+    <string name="logout">KELUAR</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="slogan">Belajar itu Keren!</string>
     <string name="search_hint">Cari disini</string>
     <string name="news">Berita</string>
+    <string name="setting">PENGATURAN</string>
+    <string name="language">BAHASA</string>
+    <string name="theme">MODE TAMPILAN</string>
+    <string name="accessbility">AKSESBILITAS</string>
 </resources>
