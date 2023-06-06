@@ -18,7 +18,7 @@ async function getStudents(req, res) {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         //fetch all students from Firestore or any other data source
         const studentsSnapshot = await firestore
-            .collection('student')
+            .collection('student').doc('userData')
             .where('userId', '==', userId)
             .get();
 
@@ -50,7 +50,7 @@ async function getDetailStudents(req, res) {
         //get the id
         const { id } = req.params;
         //make a veriable to get data by id
-        const studentRef = firestore.collection('student').doc(id);
+        const studentRef = firestore.collection('student/userData').doc(id);
         //check data exists or not
         const studentsSnapshot = await firestore
             .collection('student')
@@ -61,7 +61,7 @@ async function getDetailStudents(req, res) {
             return res.status(404).json({ error: 'No students found' });
         }
         //get the data 
-        const studentDoc = await studentRef.get({ id, ID, nama });
+        const studentDoc = await studentRef.get({ StudentID, Name, Gender, Email, Password, Class });
 
         // Return as a response
         res.json(studentDoc);
@@ -90,7 +90,7 @@ async function createStudent(req, res) {
             return; // Return here to stop further execution
         }
 
-        const studentRef = await firestore.collection('student').add({ ID, nama });
+        const studentRef = await firestore.collection('student/userData').add({ StudentID, Name, Gender, Email, Password, Class });
 
         // Return the ID of the created student as a response
         res.json({ id: studentRef.id });
@@ -108,7 +108,7 @@ async function updateStudent(req, res) {
         const updatedData = req.body;
 
         // update a specific student in Firestore or any other data source
-        const studentRef = firestore.collection('student').doc(id);
+        const studentRef = firestore.collection('student/userData').doc(id);
         const studentDoc = await studentRef.get();
 
         if (!studentDoc.exists) {
@@ -135,7 +135,7 @@ async function deleteStudent(req, res) {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         const { id } = req.params;
         // delete a specific student from Firestore or any other data source
-        const studentRef = firestore.collection('student').doc(id);
+        const studentRef = firestore.collection('student/userData').doc(id);
         const studentDoc = await studentRef.get();
 
         if (!studentDoc.exists) {
@@ -159,7 +159,7 @@ async function getScore(req, res) {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         //fetch all students from Firestore or any other data source
         const scoreSnapshot = await firestore
-            .collection('score')
+            .collection('student/score')
             .where('userId', '==', userId)
             .get();
 
@@ -191,10 +191,10 @@ async function getDetailScore(req, res) {
         //get the id
         const { id } = req.params;
         //make a veriable to get data by id
-        const scoreRef = firestore.collection('score').doc(id);
+        const scoreRef = firestore.collection('student/score').doc(id);
         //check data exists or not
         const scoreSnapshot = await firestore
-            .collection('score')
+            .collection('student/nilai')
             .where('userId', '==', userId)
             .get();
 
@@ -202,7 +202,7 @@ async function getDetailScore(req, res) {
             return res.status(404).json({ error: 'No score found' });
         }
         //get the data 
-        const scoreDoc = await scoreRef.get({ id, ID, nama, score });
+        const scoreDoc = await scoreRef.get({ nilaiUh1, nilaiUts, nilaiUas });
 
         // Return as a response
         res.json(scoreDoc);
@@ -232,7 +232,7 @@ async function createScore(req, res) {
             return; // Return here to stop further execution
         }
 
-        const scoreRef = await firestore.collection('score').where('userId', '==', userId).add({ ID, nama, score });
+        const scoreRef = await firestore.collection('student/score').add({ nilaiUh1, nilaiUts, nilaiUas });
 
         // Return the ID of the created student as a response
         res.json({ id: scoreRef.id });
@@ -250,7 +250,7 @@ async function updateScore(req, res) {
         const updatedData = req.body;
 
         // update a specific student in Firestore or any other data source
-        const scoreRef = firestore.collection('score').doc(id).where('userId', '==', userId);
+        const scoreRef = firestore.collection('student/score').doc(id).where('userId', '==', userId);
         const scoreDoc = await scoreRef.get();
 
         if (!scoreDoc.exists) {
@@ -297,17 +297,17 @@ async function deleteScore(req, res) {
 
 //Absent 
 
-async function getAbsent(req, res) {
+async function getAttendance(req, res) {
     try {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         //fetch all students from Firestore or any other data source
         const scoreSnapshot = await firestore
-            .collection('score')
+            .collection('attendance')
             .where('userId', '==', userId)
             .get();
 
         if (scoreSnapshot.empty) {
-            return res.status(404).json({ error: 'No Score found' });
+            return res.status(404).json({ error: 'No Attendance found' });
         }
 
         const score = [];
@@ -328,13 +328,13 @@ async function getAbsent(req, res) {
     }
 }
 
-async function getDetailAbsent(req, res) {
+async function getDetailAttendance(req, res) {
     try {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         //get the id
         const { id } = req.params;
         //make a veriable to get data by id
-        const scoreRef = firestore.collection('score').doc(id);
+        const scoreRef = firestore.collection('attendance').doc(id);
         //check data exists or not
         const scoreSnapshot = await firestore
             .collection('score')
@@ -342,10 +342,10 @@ async function getDetailAbsent(req, res) {
             .get();
 
         if (scoreSnapshot.empty) {
-            return res.status(404).json({ error: 'No score found' });
+            return res.status(404).json({ error: 'No Attendance found' });
         }
         //get the data 
-        const scoreDoc = await scoreRef.get({ id, ID, nama, score });
+        const scoreDoc = await scoreRef.get({ id, });
 
         // Return as a response
         res.json(scoreDoc);
@@ -356,7 +356,7 @@ async function getDetailAbsent(req, res) {
 }
 
 
-async function createAbsent(req, res) {
+async function createAttendance(req, res) {
     try {
         const userId = req.headers['X-User-Id'];// Retrieve the user ID from the custom header
         // Extract the data from the request body
@@ -375,7 +375,7 @@ async function createAbsent(req, res) {
             return; // Return here to stop further execution
         }
 
-        const scoreRef = await firestore.collection('score').where('userId', '==', userId).add({ ID, nama, score });
+        const scoreRef = await firestore.collection('attendance').where('userId', '==', userId).add({ ID });
 
         // Return the ID of the created student as a response
         res.json({ id: scoreRef.id });
@@ -386,18 +386,18 @@ async function createAbsent(req, res) {
 }
 
 
-async function updateAbsent(req, res) {
+async function updateAttendance(req, res) {
     try {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         const { id } = req.params;
         const updatedData = req.body;
 
         // update a specific student in Firestore or any other data source
-        const scoreRef = firestore.collection('score').doc(id).where('userId', '==', userId);
+        const scoreRef = firestore.collection('attendance').doc(id).where('userId', '==', userId);
         const scoreDoc = await scoreRef.get();
 
         if (!scoreDoc.exists) {
-            return res.status(404).json({ error: 'score not found' });
+            return res.status(404).json({ error: 'attendance not found' });
         }
 
         // Check the request is a PUT or PATCH
@@ -408,29 +408,29 @@ async function updateAbsent(req, res) {
         }
 
         // Return a success message 
-        res.json({ message: 'score updated successfully' });
+        res.json({ message: 'attendance updated successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Something went wrong' });
     }
 }
 
-async function deleteAbsent(req, res) {
+async function deleteAttendance(req, res) {
     try {
         const userId = req.headers['X-User-Id']; // Retrieve the user ID from the custom header
         const { id } = req.params;
         // delete a specific student from Firestore or any other data source
-        const scoreRef = firestore.collection('score').doc(id).where('userId', '==', userId);
+        const scoreRef = firestore.collection('attendance').doc(id).where('userId', '==', userId);
         const scoreDoc = await scoreRef.get();
 
         if (!scoreDoc.exists) {
-            return res.status(404).json({ error: 'score not found' });
+            return res.status(404).json({ error: 'attendance not found' });
         }
 
         await scoreRef.delete();
 
         // Return a success message or any relevant response
-        res.json({ message: 'Score deleted successfully' });
+        res.json({ message: 'attendance deleted successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Something went wrong' });
@@ -452,10 +452,10 @@ module.exports = {
     createScore,
     updateScore,
     deleteScore,
-    //absent
-    getAbsent,
-    getDetailAbsent,
-    createAbsent,
-    updateAbsent,
-    deleteAbsent,
+    //attendance
+    getAttendance,
+    getDetailAttendance,
+    createAttendance,
+    updateAttendance,
+    deleteAttendance,
 };

@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
             const { sender, receiver, message } = data;
 
             // Send the message and record it in Firestore
-            const messageRef = await firestore.collection('chat').add({
+            const messageRef = await firestore.collection('room/chat').add({
                 sender,
                 receiver,
                 message,

@@ -5,7 +5,8 @@ const { getStudents, getDetailStudents,
     createStudent, getDetailScore, updateStudent,
     deleteStudent, getScore,
     createScore, updateScore,
-    deleteScore } = require('../handlers/handlerStudents');
+    deleteScore, getAttendance, getDetailAttendance,
+    createAttendance, updateAttendance, deleteAttendance } = require('../handlers/handlerStudents');
 
 //student
 router.get('/', authenticate, getStudents);
@@ -19,5 +20,10 @@ router.get('/:id', authenticate, getDetailScore);
 router.post('/', authenticate, createScore);
 router.patch('/:id', authenticate, updateScore);
 router.delete('/:id', authenticate, deleteScore);
-
+//attendance
+router.get('/', authenticate, getAttendance);
+router.get('/:id', authenticate, getDetailAttendance);
+router.post('/', authenticate, createAttendance);
+router.patch('/:id', authenticate, updateAttendance);
+router.delete('/:id', authenticate, deleteAttendance);
 module.exports = router;
