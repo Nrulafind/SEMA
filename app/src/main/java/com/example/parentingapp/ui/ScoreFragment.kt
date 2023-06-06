@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -27,10 +26,8 @@ import androidx.fragment.app.Fragment
 import com.example.parentingapp.JetParentingApp
 import com.example.parentingapp.R
 import com.example.parentingapp.data.Course
-import com.example.parentingapp.data.dummyCourseMenu
 import com.example.parentingapp.databinding.FragmentScoreBinding
 import com.example.parentingapp.ui.components.BottomBaritem
-import com.example.parentingapp.ui.components.HomeSection
 import com.example.parentingapp.ui.components.ScoreItem
 import com.example.parentingapp.ui.home.ScoreActivity
 import com.example.parentingapp.ui.theme.ParentingAppTheme
@@ -60,26 +57,26 @@ class ScoreFragment : Fragment() {
         }
     }
 
-    @Composable
-    fun ScorePage(modifier: Modifier = Modifier, navigateToDetail: (String) -> Unit) {
-        Scaffold(bottomBar = { BottomBar() }
-        ) { innerPadding ->
-            Column(
-                modifier = modifier
-                    .padding(innerPadding)
-            ) {
-                HomeSection(
-                    title = stringResource(id = R.string.list_course),
-                    content = {
-                        CourseMenu(
-                            dummyCourseMenu,
-                            navigateToDetail
-                        )
-                    }
-                )
-            }
-        }
-    }
+//    @Composable
+//    fun ScorePage(modifier: Modifier = Modifier, navigateToDetail: (String) -> Unit) {
+//        Scaffold(bottomBar = { BottomBar() }
+//        ) { innerPadding ->
+//            Column(
+//                modifier = modifier
+//                    .padding(innerPadding)
+//            ) {
+//                HomeSection(
+//                    title = stringResource(id = R.string.list_course),
+//                    content = {
+//                        CourseMenu(
+//                            dummyCourseMenu,
+//                            navigateToDetail
+//                        )
+//                    }
+//                )
+//            }
+//        }
+//    }
 
     @Composable
     fun BottomBar(

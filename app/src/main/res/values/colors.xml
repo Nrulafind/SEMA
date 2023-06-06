@@ -17,9 +17,11 @@
     <color name="light_blue">#5AA9E6</color>
     <color name="light_pink">#FF6392</color>
     <color name="light_yellow">#FFE45E</color>
-    <color name="white_75">#BFFFFFFF</color>
+    <color name="dark_green">#097043</color>
+
 
 <!--    opacity-->
     <color name="white_40opacity">#80FFFFFF</color>
     <color name="yellow_25opacity">#40FFE45E</color>
+    <color name="white_75">#BFFFFFFF</color>
 </resources>
