@@ -2,23 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ui.LoginActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/logo"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="53dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/sema_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/splash_login" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -27,10 +22,11 @@
         android:text="@string/app_name"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_green"
+        android:layout_marginTop="260dp"
         app:layout_constraintEnd_toEndOf="@+id/logo"
         app:layout_constraintStart_toStartOf="@+id/logo"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toTopOf="@+id/logo" />
 
     <TextView
         android:id="@+id/tv_statement_login"
@@ -39,7 +35,8 @@
         android:text="@string/login_statement"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -85,7 +82,7 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/button_yellow"
         android:text="@string/login_button"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:backgroundTint="@null"
