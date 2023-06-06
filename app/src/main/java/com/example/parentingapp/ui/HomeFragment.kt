@@ -66,8 +66,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.fb_addStory){
-            startActivity(Intent(requireContext(), ChatDetailActivity::class.java))
-        }
+//        if (v?.id == R.id.fb_addStory){
+//            startActivity(Intent(requireContext(), ChatDetailActivity::class.java))
+//        }
     }
 }

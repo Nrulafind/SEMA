@@ -42,4 +42,8 @@
     <string name="nis">NIS</string>
     <string name="title_score">Score</string>
     <string name="attendance">Absensi</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="userId">NIS</string>
+    <string name="logout">Logout</string>
 </resources>
