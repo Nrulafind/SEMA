@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -36,17 +36,17 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginTop="66dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_app_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_app_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_app_name" />
 
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/edit_text_login"
         android:ems="10"
@@ -62,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/edit_text_login"
         android:ems="10"
@@ -79,12 +79,13 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_yellow"
         android:text="@string/login_button"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
+        android:padding="2dp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@+id/edt_password"
         app:layout_constraintHorizontal_bias="0.0"
