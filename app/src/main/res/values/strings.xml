@@ -9,7 +9,7 @@
     <string name="score">Score</string>
     <string name="absent">Attendance</string>
     <string name="profile">Profile</string>
-    <string name="list_course">Daftar Mata Pelajaran</string>
+    <string name="list_course">Ini salah satu mata pelajaran</string>
     <string name="back">Back</string>
     <string name="data_siswa">DATA SISWA</string>
     <string name="nilai">NILAI</string>
@@ -56,4 +56,5 @@
     <string name="language">BAHASA</string>
     <string name="theme">MODE TAMPILAN</string>
     <string name="accessbility">AKSESBILITAS</string>
+    <string name="course_title">MATA PELAJARAN</string>
 </resources>

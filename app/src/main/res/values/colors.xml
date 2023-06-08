@@ -21,7 +21,8 @@
 
 
 <!--    opacity-->
-    <color name="white_40opacity">#80FFFFFF</color>
+    <color name="white_40">#80FFFFFF</color>
+    <color name="white_25">#40FFFFFF</color>
     <color name="yellow_25opacity">#40FFE45E</color>
     <color name="white_75">#BFFFFFFF</color>
 </resources>
