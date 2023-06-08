@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.text.Html
 import android.view.*
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -23,6 +28,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val images = ArrayList<SliderData>()
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +76,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
         })
 
         binding.fbAddStory.setOnClickListener(this)
+
+        requireActivity().run{
+            binding.textView2.text = intent.getParcelableExtra(EXTRA_TOKEN)
+        }
+
+        auth = Firebase.auth
+        val user = auth.currentUser
+        binding.textView2.text = user?.uid.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -143,5 +158,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 )
             }
         }
+    }
+
+    companion object{
+        const val EXTRA_TOKEN = "extra_token"
     }
 }
