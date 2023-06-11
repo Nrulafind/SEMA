@@ -1,5 +1,6 @@
 package com.example.parentingapp.ui
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.NewsAdapter
+import com.example.parentingapp.adapter.PostAdapter
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
@@ -35,6 +37,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private val viewModel: StudentViewModel by activityViewModels()
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var postAdapter: PostAdapter
 
 
     override fun onCreateView(
@@ -46,6 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -84,8 +88,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
         binding.fbAddStory.setOnClickListener(this)
 
         newsAdapter = NewsAdapter()
+        postAdapter = PostAdapter()
         binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvNews.adapter = newsAdapter
+        binding.rvPost.adapter = postAdapter
+
+//        binding.rvPost.setOnTouchListener { v, event ->
+//            v.parent.requestDisallowInterceptTouchEvent(true)
+//            false
+//        }
 
         auth = Firebase.auth
         val user = auth.currentUser

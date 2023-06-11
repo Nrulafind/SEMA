@@ -62,4 +62,7 @@
     <string name="nama_ujian">Nama Ujian</string>
     <string name="kkm">KKM = 70</string>
     <string name="score_result">80</string>
+    <string name="post">Postingan</string>
+    <string name="teacher">Guru</string>
+    <string name="time_upload">Baru Saja</string>
 </resources>
