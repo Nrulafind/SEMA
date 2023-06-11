@@ -13,9 +13,9 @@
     <string name="back">Back</string>
     <string name="data_siswa">DATA SISWA</string>
     <string name="nilai">NILAI</string>
-    <string name="lulus">Lulus</string>
+    <string name="lulus">LULUS</string>
     <string name="student_name">Jeon Jungkook</string>
-    <string name="student_grade">11-A</string>
+    <string name="student_grade">XII-A</string>
     <string name="student_semester">Semester Genap</string>
     <string name="student_status">Outstanding Student</string>
     <string name="app_name">SEMA</string>
@@ -57,4 +57,9 @@
     <string name="theme">MODE TAMPILAN</string>
     <string name="accessbility">AKSESBILITAS</string>
     <string name="course_title">MATA PELAJARAN</string>
+    <string name="student_icon">Ini adalah ikon murid</string>
+    <string name="remidi">REMIDI</string>
+    <string name="nama_ujian">Nama Ujian</string>
+    <string name="kkm">KKM = 70</string>
+    <string name="score_result">80</string>
 </resources>

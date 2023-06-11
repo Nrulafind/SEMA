@@ -7,27 +7,158 @@
     android:background="@color/dark_green"
     tools:context=".ui.ScoreDetailActivity">
 
-    <LinearLayout
-        android:id="@+id/course_title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/back_icon"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/course_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rotation="270"
-            android:src="@drawable/baseline_arrow_circle_up_24"/>
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/back_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="270"
+                android:src="@drawable/baseline_arrow_circle_up_24" />
+
+            <TextView
+                android:id="@+id/course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/course_title"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/course_name"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_transparent_button"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="@string/student_status"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/student_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/status"
+                android:layout_marginTop="20dp"
+                android:text="@string/student_name"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/student_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/student_name"
+                android:text="@string/student_grade"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/student_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/student_grade"
+                android:text="@string/student_semester"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/student_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/status"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/student_icon"
+                android:src="@drawable/student_icon" />
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/course_title"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
+            android:layout_below="@id/course_title"
+            android:background="@drawable/custom_container"
+            android:padding="20dp">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/nilai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nilai"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/keterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nilai">
+
+                <ImageView
+                    android:id="@+id/lulus_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sharp_square_24"
+                    app:tint="@color/dark_green" />
+
+                <TextView
+                    android:id="@+id/lulus_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/lulus"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/remidi_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/sharp_square_24"
+                    app:tint="@color/dark_orange" />
+
+                <TextView
+                    android:id="@+id/remidi_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/remidi"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/keterangan" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </ScrollView>

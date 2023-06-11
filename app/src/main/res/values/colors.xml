@@ -9,7 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="firebase_yellow">#FFCA28</color>
     <color name="firebase_amber">#FFA000</color>
-    <color name="firebase_orange">#F57C00</color>
     <color name="firebase_blue">#039BE5</color>
     <color name="firebase_navy">#2C384A</color>
 
@@ -18,6 +17,7 @@
     <color name="light_yellow">#FFE45E</color>
     <color name="light_gray">#BDBDBD</color>
     <color name="dark_green">#097043</color>
+    <color name="dark_orange">#EE6F06</color>
 
 
 <!--    opacity-->

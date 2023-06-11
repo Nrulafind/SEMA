@@ -97,12 +97,25 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?, token: String?) {
         if (currentUser != null){
+            val bundle = Bundle()
+            bundle.putString(HomeFragment.EXTRA_TOKEN, token)
             //startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            val intent = Intent(this, HomeFragment::class.java).apply {
-                putExtra(EXTRA_TOKEN, token)
+//            val intent = Intent(this, HomeFragment::class.java).apply {
+//                putExtra(EXTRA_TOKEN, token)
+//            }
+//            startActivity(intent)
+//            finish()
+
+            val homeFragment = HomeFragment()
+
+            val fragmentManager =supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName)
+
+            if (fragment !is HomeFragment){
+                fragmentManager.beginTransaction().replace(
+                    R.id.frame_container, homeFragment, HomeFragment::class.java.simpleName
+                ).commit()
             }
-            startActivity(intent)
-            finish()
         }
     }
 
