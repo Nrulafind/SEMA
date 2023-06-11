@@ -11,11 +11,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
+import com.example.parentingapp.adapter.NewsAdapter
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
+import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -31,6 +34,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var adapter: SliderAdapter
     private lateinit var auth: FirebaseAuth
     private val viewModel: StudentViewModel by activityViewModels()
+    private lateinit var newsAdapter: NewsAdapter
 
 
     override fun onCreateView(
@@ -79,20 +83,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         binding.fbAddStory.setOnClickListener(this)
 
-//        binding.textView2.text = EXTRA_TOKEN
-//        if (requireActivity().intent.hasExtra(EXTRA_TOKEN)) {
-//            binding.textView2.text = requireActivity().intent.getStringExtra(EXTRA_TOKEN)
-//        }
-
-//        requireActivity().run{
-//            binding.textView2.text = intent.getParcelableExtra(EXTRA_TOKEN)
-//        }
+        newsAdapter = NewsAdapter()
+        binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNews.adapter = newsAdapter
 
         auth = Firebase.auth
         val user = auth.currentUser
-//        binding.textView2.text = user?.uid.toString()
-
-        binding.textView2.text = viewModel.getData(EXTRA_TOKEN).toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -169,7 +165,4 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    companion object{
-        const val EXTRA_TOKEN = "extra_token"
-    }
 }
