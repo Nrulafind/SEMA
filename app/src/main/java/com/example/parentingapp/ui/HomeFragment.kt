@@ -35,7 +35,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
     private lateinit var auth: FirebaseAuth
-    private val viewModel: StudentViewModel by activityViewModels()
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var postAdapter: PostAdapter
 

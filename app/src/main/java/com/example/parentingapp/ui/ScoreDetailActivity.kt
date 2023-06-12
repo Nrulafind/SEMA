@@ -2,6 +2,7 @@ package com.example.parentingapp.ui
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parentingapp.adapter.CourseAdapter
@@ -12,12 +13,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class ScoreDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScoreDetailBinding
     private lateinit var auth: FirebaseAuth
+    private val viewModel: ScoreViewModel by viewModels()
     var db = Firebase.firestore
+    var listInput: ArrayList<Int> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +79,10 @@ class ScoreDetailActivity : AppCompatActivity() {
 
     private fun getData(userId: String) {
         var listScore: ArrayList<Score> = ArrayList()
+        var input1: ArrayList<Int> = ArrayList()
+        var input2: ArrayList<Int> = ArrayList()
+        var avg1: Double
+        var avg2: Double
         db.collection("student").document(userId).collection("score").document(userId)
             .get()
 //            .addOnSuccessListener { results ->
@@ -96,6 +106,13 @@ class ScoreDetailActivity : AppCompatActivity() {
                                 "$nilai",
                                 "$kkm"
                             )
+                            if (name == "Ulangan Harian 1" || name == "Ulangan Harian 2" || name == "Ulangan Harian 3"){
+                                input1.add(nilai.toString().toInt())
+                            }
+                            if (name == "Ulangan Harian 4" || name == "Ulangan Harian 5" || name == "Ulangan Harian 6"){
+                                input2.add(nilai.toString().toInt())
+                            }
+                            if (name == "UTS" || name == "UAS") listInput.add(nilai.toString().toInt())
                             listScore.add(score)
 //                            Log.d("TAG", "$score")
 //                            v.mapValues { it ->
@@ -111,7 +128,16 @@ class ScoreDetailActivity : AppCompatActivity() {
 //                            }
                         }
                     }
-                    Log.d("TAG", "$listScore")
+                    avg1 = input1.average()
+                    avg2 = input2.average()
+                    listInput.add(avg1.toInt())
+                    listInput.add(avg2.toInt())
+                    viewModel.getPredict(listInput)
+                    viewModel.predict.observe(this) {
+                        binding.status.text = it.toString()
+                    }
+//                    binding.daftarNilai.text = listInput[0].toString()
+                    Log.d("TAG", "$listInput")
                     val adapter = ScoreAdapter(listScore)
                     binding.rvScore.adapter = adapter
                 }
