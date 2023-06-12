@@ -1,12 +1,9 @@
 package com.example.parentingapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.parentingapp.R
-import com.example.parentingapp.data.User
+import androidx.appcompat.app.AppCompatActivity
 import com.example.parentingapp.databinding.ActivityDetailAttendanceBinding
-import com.example.parentingapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -26,8 +23,8 @@ class DetailAttendance : AppCompatActivity() {
 
         val db = Firebase.firestore
         auth = Firebase.auth
-        val user = auth.currentUser
 
+        val user = auth.currentUser
         val docRef = db.collection("userData").document(user!!.uid)
         docRef.get()
             .addOnSuccessListener { document ->
@@ -57,7 +54,7 @@ class DetailAttendance : AppCompatActivity() {
 //        postReference.addValueEventListener(postListener)
     }
 
-    companion object{
+    companion object {
         const val TAG = "Detail Attendance"
     }
 }
