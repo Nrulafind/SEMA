@@ -19,15 +19,15 @@ model = tf.keras.models.load_model(model_path)
 @app.route('/api/predict', methods=['POST'])
 def predict():
     input_data = request.json['input_data']
-    if input_data is None: return res.status(401).jsonify({'message':'need input data'})
+    if input_data is None: return jsonify({'message':'need input data'}), 401
     try:
         input_tensor = tf.convert_to_tensor(input_data, dtype=tf.float64)
         input_tensor = tf.reshape(input_tensor, [1, 4])
         output_tensor = model.predict(input_tensor)
         results = output_tensor.tolist()
-        return res.status(200).jsonify(results, {'message':'Successfully'})
+        return jsonify(results, {'message':'Successfully'}), 200
     except Exception as e:
-        return res.statuts(500).jsonify({'error': 'Something went wrong'})
+        return jsonify({'error': 'Something went wrong'}), 500
 
 if __name__ == '__main__':
     app.run()
