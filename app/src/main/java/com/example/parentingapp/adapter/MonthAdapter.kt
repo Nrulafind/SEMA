@@ -1,15 +1,12 @@
 package com.example.parentingapp.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parentingapp.data.Month
 import com.example.parentingapp.databinding.ItemMonthBinding
-import com.example.parentingapp.ui.DetailAttendance
+import com.example.parentingapp.ui.DetailAttendanceActivity
 
 class MonthAdapter(private var listMonth: ArrayList<Month>) : RecyclerView.Adapter<MonthAdapter.MonthViewHolder>() {
 
@@ -30,7 +27,7 @@ class MonthAdapter(private var listMonth: ArrayList<Month>) : RecyclerView.Adapt
         holder.binding.courseName.text = monthData.title
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, DetailAttendance::class.java)
+            val intent = Intent(holder.itemView.context, DetailAttendanceActivity::class.java)
             holder.itemView.context.startActivity(intent)
         }
     }
