@@ -18,6 +18,8 @@ import com.example.parentingapp.R
 import com.example.parentingapp.adapter.NewsAdapter
 import com.example.parentingapp.adapter.PostAdapter
 import com.example.parentingapp.adapter.SliderAdapter
+import com.example.parentingapp.data.Course
+import com.example.parentingapp.data.News
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
 import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
@@ -34,10 +36,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val images = ArrayList<SliderData>()
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
-    private lateinit var auth: FirebaseAuth
-    private val viewModel: StudentViewModel by activityViewModels()
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var postAdapter: PostAdapter
+    private val listNews = ArrayList<News>()
 
 
     override fun onCreateView(
@@ -86,21 +87,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
         })
 
         binding.fbAddStory.setOnClickListener(this)
+        
+        addListNews()
 
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(listNews)
         postAdapter = PostAdapter()
         binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvNews.adapter = newsAdapter
         binding.rvPost.adapter = postAdapter
+    }
 
-//        binding.rvPost.setOnTouchListener { v, event ->
-//            v.parent.requestDisallowInterceptTouchEvent(true)
-//            false
-//        }
-
-        auth = Firebase.auth
-        val user = auth.currentUser
+    private fun addListNews() {
+        listNews.add(News(R.drawable.img_news1, "STUDY TOUR KELAS 12", "Dalam rangka perpisahan kelas.."))
+        listNews.add(News(R.drawable.img_news2, "UJIAN AKHIR SEMESTER", "Dengan ini kami mengumumkan."))
+        listNews.add(News(R.drawable.img_news3, "PEMBAGIAN RAPOT", "Pembagian rapot akan dilakukan"))
+        listNews.add(News(R.drawable.img_news4, "LIBUR SEMESTER", "Libur semester genap akan di..."))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
