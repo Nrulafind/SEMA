@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.CourseAdapter
 import com.example.parentingapp.data.Course
-import com.example.parentingapp.data.dummyScoreMenu
+//import com.example.parentingapp.data.dummyScoreMenu
 import com.example.parentingapp.databinding.FragmentScoreBinding
 
 
@@ -42,18 +42,18 @@ class ScoreFragment : Fragment() {
 //        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
 //        binding.rvCourseList.addItemDecoration(itemDecoration)
 
-        list.add(Course(R.drawable.matematika, "Matematika", dummyScoreMenu))
-        list.add(Course(R.drawable.bd, "Bahasa Daerah", dummyScoreMenu))
-        list.add(Course(R.drawable.agama, "Agama", dummyScoreMenu))
-        list.add(Course(R.drawable.eng, "Bahasa Inggris", dummyScoreMenu))
-        list.add(Course(R.drawable.indo, "Bahasa Indonesia", dummyScoreMenu))
-        list.add(Course(R.drawable.biologi, "Biologi", dummyScoreMenu))
-        list.add(Course(R.drawable.ekonomi, "Ekonomi", dummyScoreMenu))
-        list.add(Course(R.drawable.fisika, "Fisika", dummyScoreMenu))
-        list.add(Course(R.drawable.kimia, "Kimia", dummyScoreMenu))
-        list.add(Course(R.drawable.pkn, "Kewarganegaraan", dummyScoreMenu))
-        list.add(Course(R.drawable.prakarya, "Prakarya", dummyScoreMenu))
-        list.add(Course(R.drawable.sejarah, "Sejarah", dummyScoreMenu))
+        list.add(Course(R.drawable.matematika, "Matematika"))
+        list.add(Course(R.drawable.bd, "Bahasa Daerah"))
+        list.add(Course(R.drawable.agama, "Agama"))
+        list.add(Course(R.drawable.eng, "Bahasa Inggris"))
+        list.add(Course(R.drawable.indo, "Bahasa Indonesia"))
+        list.add(Course(R.drawable.biologi, "Biologi"))
+        list.add(Course(R.drawable.ekonomi, "Ekonomi"))
+        list.add(Course(R.drawable.fisika, "Fisika"))
+        list.add(Course(R.drawable.kimia, "Kimia"))
+        list.add(Course(R.drawable.pkn, "Kewarganegaraan"))
+        list.add(Course(R.drawable.prakarya, "Prakarya"))
+        list.add(Course(R.drawable.sejarah, "Sejarah"))
 
         getData()
     }

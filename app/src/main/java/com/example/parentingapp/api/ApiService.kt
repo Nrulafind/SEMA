@@ -15,5 +15,5 @@ interface ApiService {
     @GET("api/private/student")
     fun getStudentData(
         @Header("Authorization") token: String
-    ): Call<StudentResponse>
+    ): Call<Student>
 }

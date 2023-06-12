@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.text.Html
 import android.view.*
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
@@ -18,10 +16,8 @@ import com.example.parentingapp.adapter.NewsAdapter
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
-import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseUser
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -32,7 +28,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val images = ArrayList<SliderData>()
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
-    private lateinit var auth: FirebaseAuth
+    private var auth: FirebaseUser? = null
     private val viewModel: StudentViewModel by activityViewModels()
     private lateinit var newsAdapter: NewsAdapter
 
@@ -84,11 +80,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
         binding.fbAddStory.setOnClickListener(this)
 
         newsAdapter = NewsAdapter()
-        binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNews.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvNews.adapter = newsAdapter
 
-        auth = Firebase.auth
-        val user = auth.currentUser
+        auth = FirebaseAuth.getInstance().currentUser
+        auth?.getIdToken(true)
+            ?.addOnCompleteListener {
+                binding.token.text = it.result.token
+            }
+//        val user = auth.currentUser?.getIdToken(true)
+//        binding.token.text = user.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

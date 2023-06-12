@@ -60,6 +60,6 @@
     <string name="student_icon">Ini adalah ikon murid</string>
     <string name="remidi">REMIDI</string>
     <string name="nama_ujian">Nama Ujian</string>
-    <string name="kkm">KKM = 70</string>
+    <string name="kkm">KKM =</string>
     <string name="score_result">80</string>
 </resources>
