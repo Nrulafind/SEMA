@@ -25,7 +25,9 @@ def predict():
         input_tensor = tf.reshape(input_tensor, [1, 4])
         output_tensor = model.predict(input_tensor)
         results = output_tensor.tolist()
-        return jsonify(results, {'message':'Successfully'}), 200
+        #print(results[0][0])
+        return jsonify({'results': results[0][0]}), 200
+        #return json.loads(results), 200
     except Exception as e:
         return jsonify({'error': 'Something went wrong'}), 500
 
