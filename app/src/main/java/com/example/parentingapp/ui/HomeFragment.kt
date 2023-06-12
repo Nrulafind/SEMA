@@ -1,23 +1,29 @@
 package com.example.parentingapp.ui
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.*
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.NewsAdapter
+import com.example.parentingapp.adapter.PostAdapter
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
+import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -28,9 +34,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val images = ArrayList<SliderData>()
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
-    private var auth: FirebaseUser? = null
+    private lateinit var auth: FirebaseAuth
     private val viewModel: StudentViewModel by activityViewModels()
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var postAdapter: PostAdapter
 
 
     override fun onCreateView(
@@ -42,6 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -80,17 +88,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
         binding.fbAddStory.setOnClickListener(this)
 
         newsAdapter = NewsAdapter()
-        binding.rvNews.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        postAdapter = PostAdapter()
+        binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvNews.adapter = newsAdapter
+        binding.rvPost.adapter = postAdapter
 
-        auth = FirebaseAuth.getInstance().currentUser
-        auth?.getIdToken(true)
-            ?.addOnCompleteListener {
-                binding.token.text = it.result.token
-            }
-//        val user = auth.currentUser?.getIdToken(true)
-//        binding.token.text = user.toString()
+//        binding.rvPost.setOnTouchListener { v, event ->
+//            v.parent.requestDisallowInterceptTouchEvent(true)
+//            false
+//        }
+
+        auth = Firebase.auth
+        val user = auth.currentUser
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

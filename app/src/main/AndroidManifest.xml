@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ParentingApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.DetailAttendance"
+            android:exported="false" />
+        <activity
             android:name=".ui.ScoreDetailActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />

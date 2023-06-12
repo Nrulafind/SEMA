@@ -62,4 +62,12 @@
     <string name="nama_ujian">Nama Ujian</string>
     <string name="kkm">KKM =</string>
     <string name="score_result">80</string>
+    <string name="post">Postingan</string>
+    <string name="teacher">Guru</string>
+    <string name="time_upload">Baru Saja</string>
+    <string name="month">Bulan</string>
+    <string name="alpha">Alpha</string>
+    <string name="permit">Izin</string>
+    <string name="sick">Sakit</string>
+    <string name="present">Hadir</string>
 </resources>
