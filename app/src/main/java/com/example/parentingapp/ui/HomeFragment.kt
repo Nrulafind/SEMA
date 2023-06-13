@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.SearchView
 import androidx.activity.viewModels
-import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -20,6 +22,7 @@ import com.example.parentingapp.adapter.PostAdapter
 import com.example.parentingapp.adapter.SliderAdapter
 import com.example.parentingapp.data.Course
 import com.example.parentingapp.data.News
+import com.example.parentingapp.data.Post
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
 import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
@@ -28,17 +31,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
-class HomeFragment : Fragment(), View.OnClickListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var searchView: SearchView
     private val images = ArrayList<SliderData>()
     private lateinit var dots: ArrayList<TextView>
     private lateinit var adapter: SliderAdapter
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var postAdapter: PostAdapter
     private val listNews = ArrayList<News>()
+    private val listPost = ArrayList<Post>()
 
 
     override fun onCreateView(
@@ -85,17 +88,39 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 super.onPageSelected(position)
             }
         })
-
-        binding.fbAddStory.setOnClickListener(this)
         
         addListNews()
+        addListPost()
 
         newsAdapter = NewsAdapter(listNews)
-        postAdapter = PostAdapter()
+        postAdapter = PostAdapter(listPost)
         binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvNews.adapter = newsAdapter
         binding.rvPost.adapter = postAdapter
+
+
+
+        binding.searchView.queryHint = getString(R.string.search_hint)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Metode ini dipanggil saat pengguna menekan tombol Submit pada keyboard
+                if (!query.isNullOrEmpty()) {
+                    performSearch(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Metode ini dipanggil saat teks pencarian berubah
+                if (!newText.isNullOrEmpty()) {
+                    performSearch(newText)
+                } else {
+                    // Jika teks pencarian kosong, lakukan sesuatu
+                }
+                return true
+            }
+        })
     }
 
     private fun addListNews() {
@@ -105,45 +130,20 @@ class HomeFragment : Fragment(), View.OnClickListener {
         listNews.add(News(R.drawable.img_news4, "LIBUR SEMESTER", "Libur semester genap akan di..."))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.option_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
+    private fun addListPost() {
+        listPost.add(Post(R.drawable.img_post1, R.drawable.img_teacher1, "Pak Jung", "Baru Saja"))
+        listPost.add(Post(R.drawable.img_post2, R.drawable.img_teacher2, "Bu Kim", "2 Jam yang lalu"))
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.search -> {
-                // Tindakan yang dilakukan saat item-menu "Search" dipilih
-                performSearch()
-                true
-            }
-            R.id.notification -> {
-                // Tindakan yang dilakukan saat item-menu "Settings" dipilih
-                openSettings()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun performSearch(query: String) {
+        // Lakukan pencarian berdasarkan query yang diberikan
+        // Anda dapat mengganti logika ini dengan logika pencarian yang sesuai dengan aplikasi Anda
+        Log.d("Search", "Query: $query")
     }
-
-    private fun performSearch() {
-        // Logika untuk menjalankan pencarian
-    }
-
-    private fun openSettings() {
-        // Logika untuk membuka pengaturan
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onClick(v: View?) {
-//        if (v?.id == R.id.fb_addStory){
-//            startActivity(Intent(requireContext(), ChatDetailActivity::class.java))
-//        }
     }
 
     private fun setupIndicator() {
@@ -165,14 +165,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        com.google.android.material.R.color.design_default_color_primary
+                        R.color.light_green
                     )
                 )
             } else {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        com.google.android.material.R.color.design_default_color_secondary
+                        R.color.dark_green
                     )
                 )
             }
