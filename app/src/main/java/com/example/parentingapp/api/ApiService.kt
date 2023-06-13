@@ -5,9 +5,15 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @POST("predict")
+//    @Multipart
+//    @FormUrlEncoded
+    @POST("api/predict")
     @FormUrlEncoded
+//    @Multipart
     fun getPredict(
-        @Field("input_data") input_data: ArrayList<Int>,
+    @Header("Content-Type") tipe: String = "application/json",
+    @Field("input_data") input_data : ArrayList<Int>,
+//        @Body input_data : Input
+//        @Part("input_data[]") input_data : List<Int>,
     ): Call<PredictResponse>
 }
