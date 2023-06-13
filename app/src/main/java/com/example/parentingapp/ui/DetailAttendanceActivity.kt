@@ -5,10 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parentingapp.adapter.AttendanceAdapter
-import com.example.parentingapp.adapter.PostAdapter
-import com.example.parentingapp.adapter.ScoreAdapter
 import com.example.parentingapp.data.Attendance
-import com.example.parentingapp.data.Score
 import com.example.parentingapp.databinding.ActivityDetailAttendanceBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,101 +16,66 @@ class DetailAttendanceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailAttendanceBinding
     private lateinit var auth: FirebaseAuth
-    private var listAttendance: ArrayList<Attendance> = ArrayList()
+    var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailAttendanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
-
-        auth = Firebase.auth
-        val user = auth.currentUser
+        binding.backIcon.setOnClickListener {
+            onBackPressed()
+        }
 
         binding.rvAttendance.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(this)
         binding.rvAttendance.layoutManager = layoutManager
 
-        val db = Firebase.firestore
-        val docRef = db.collection("student")
-            .document(user!!.uid)
-            .collection("userData")
-            .document(user!!.uid)
+        auth = Firebase.auth
+        val userId = auth.currentUser?.uid.toString()
 
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-
-                    binding.studentName.text = document.data!!["name"].toString()
-                    binding.studentGrade.text = document.data!!["class"].toString()
-                    binding.studentSemester.text = document.data!!["angkatan"].toString()
-
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+        val score =
+            db.collection("student").document(userId).collection("userData").document(userId)
+        score.get()
+            .addOnSuccessListener {
+                if (it != null) {
+                    Log.d("success", "DocumentSnapshot data: ${it.data}")
+                    binding.studentName.text = it.data?.get("name") as String
+                    binding.studentGrade.text = it.data?.get("class") as String
+                    binding.studentSemester.text = it.data?.get("angkatan") as String
+                    getDataAttendance(userId)
                 } else {
-                    Log.d(TAG, "No such document")
+                    Log.d("failed", "Data doesn't exist")
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
+    }
 
-        val attendanceRef = db.collection("student")
-            .document(user!!.uid)
-            .collection("attendance")
-            .document(user!!.uid)
-
-        attendanceRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                } else {
-                    Log.d(TAG, "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-
+    private fun getDataAttendance(userId : String) {
+        var listAttendance: ArrayList<Attendance> = ArrayList()
+        db.collection("student").document(userId)
+            .collection("attendance").document(userId)
+            .get()
             .addOnCompleteListener {
-                var attend: Attendance
+                var attendance: Attendance
                 if (it.isSuccessful) {
                     val data = it.result.data
                     data?.let {
                         for ((_, value) in data) {
                             val v = value as Map<*, *>
-                            val name = v["Nama"]
+                            val nama = v["Nama"]
                             val tanggal = v["Tanggal"]
                             val keterangan = v["Keterangan"]
-                            attend = Attendance(
-                                "$name",
+                            attendance = Attendance(
+                                "$nama",
                                 "$tanggal",
                                 "$keterangan"
                             )
-                            listAttendance.add(attend)
-//                            Log.d("TAG", "$score")
-//                            v.mapValues { it ->
-//                                val (name, score, kkm) = it.value as List<*>
-//
-//                                Score(
-//                                    name as String,
-//                                    score as String,
-//                                    kkm as String
-//                                )
-//
-//                                listScore.add(Score(name, score, kkm))
-//                            }
+                            listAttendance.add(attendance)
                         }
                     }
-                    Log.d("TAG", "$listAttendance")
-                    val adapter = AttendanceAdapter(listAttendance)
-                    binding.rvAttendance.adapter = adapter
                 }
             }
-    }
-
-    companion object {
-        const val TAG = "Detail Attendance"
+        val adapter = AttendanceAdapter(listAttendance)
+        binding.rvAttendance.adapter = adapter
     }
 }
