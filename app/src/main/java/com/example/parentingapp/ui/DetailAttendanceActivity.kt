@@ -73,9 +73,9 @@ class DetailAttendanceActivity : AppCompatActivity() {
                             listAttendance.add(attendance)
                         }
                     }
+                    val adapter = AttendanceAdapter(listAttendance)
+                    binding.rvAttendance.adapter = adapter
                 }
             }
-        val adapter = AttendanceAdapter(listAttendance)
-        binding.rvAttendance.adapter = adapter
     }
 }
