@@ -1,6 +1,7 @@
 package com.example.parentingapp.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -121,6 +122,11 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
+
+        binding.imageView.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun addListNews() {

@@ -15,12 +15,15 @@
         android:theme="@style/Theme.ParentingApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.NotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.DetailAttendanceActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ScoreDetailActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.LoginActivity"
             android:exported="false" />

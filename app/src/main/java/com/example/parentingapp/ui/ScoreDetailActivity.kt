@@ -150,8 +150,8 @@ class ScoreDetailActivity : AppCompatActivity() {
 //                    listInput.add(avg1.toInt())
 //                    listInput.add(avg2.toInt())
 //                    binding.daftarNilai.text = listInput[0].toString()
-                    listInput.add(95)
-                    listInput.add(100)
+//                    listInput.add(95)
+//                    listInput.add(100)
                     listInput.add(1)
                     listInput.add(0)
                     Log.d("TAG", listInput.toString())
@@ -172,6 +172,10 @@ class ScoreDetailActivity : AppCompatActivity() {
 
                     params.setContentType("application/json")
                     client.post(applicationContext, url, params, "application/json", object : AsyncHttpResponseHandler() {
+                        override fun getUseSynchronousMode(): Boolean {
+                            return false
+                        }
+
                         override fun onSuccess(
                             statusCode: Int,
                             headers: Array<out Header>,
@@ -203,6 +207,7 @@ class ScoreDetailActivity : AppCompatActivity() {
                                     else -> "$statusCode : ${error?.message}"
                                 }
                                 Toast.makeText(this@ScoreDetailActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                                Log.d("TAG", errorMessage)
                             }
                         }
                     })
