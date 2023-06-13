@@ -25,7 +25,7 @@
                 android:src="@drawable/baseline_arrow_circle_up_24" />
 
             <TextView
-                android:id="@+id/course_name"
+                android:id="@+id/tv_moth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -39,7 +39,7 @@
                 android:id="@+id/student_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/course_name"
+                android:layout_below="@+id/tv_moth"
                 android:layout_marginTop="28dp"
                 android:text="@string/student_name"
                 android:textColor="@color/white"
@@ -68,7 +68,7 @@
                 android:id="@+id/student_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/course_name"
+                android:layout_below="@+id/tv_moth"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="28dp"
                 android:contentDescription="@string/student_icon"
@@ -180,11 +180,13 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_attendance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_attendance"
                 app:layout_constraintTop_toBottomOf="@+id/keterangan" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
