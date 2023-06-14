@@ -9,27 +9,18 @@ import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.SearchView
-import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.NewsAdapter
 import com.example.parentingapp.adapter.PostAdapter
 import com.example.parentingapp.adapter.SliderAdapter
-import com.example.parentingapp.data.Course
 import com.example.parentingapp.data.News
 import com.example.parentingapp.data.Post
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
-import com.google.android.gms.auth.api.identity.SaveAccountLinkingTokenRequest.EXTRA_TOKEN
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
@@ -107,7 +98,7 @@ class HomeFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // Metode ini dipanggil saat pengguna menekan tombol Submit pada keyboard
                 if (!query.isNullOrEmpty()) {
-                    performSearch(query)
+                    performSearch(query, listNews)
                 }
                 return true
             }
@@ -115,7 +106,7 @@ class HomeFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 // Metode ini dipanggil saat teks pencarian berubah
                 if (!newText.isNullOrEmpty()) {
-                    performSearch(newText)
+                    newsAdapter.filter(newText)
                 } else {
                     // Jika teks pencarian kosong, lakukan sesuatu
                 }
@@ -141,9 +132,11 @@ class HomeFragment : Fragment() {
         listPost.add(Post(R.drawable.img_post2, R.drawable.img_teacher2, "Bu Kim", "2 Jam yang lalu"))
     }
 
-    private fun performSearch(query: String) {
-        // Lakukan pencarian berdasarkan query yang diberikan
-        // Anda dapat mengganti logika ini dengan logika pencarian yang sesuai dengan aplikasi Anda
+    private fun performSearch(query: String, listNews: ArrayList<News>) {
+        var listFil = ArrayList<News>()
+        for(query in listNews){
+            listFil.add(query)
+        }
         Log.d("Search", "Query: $query")
     }
 
