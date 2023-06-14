@@ -41,3 +41,16 @@ Example cd SEMA
 
 ## API Documentation 
 https://app.swaggerhub.com/apis-docs/MNURULANU246/s-eko_lah_bersa_ma_se_ma/1.0.0#/predict/input_data 
+
+## Tools We Use
+- VSCODE
+- Postman
+- Cloud Build
+- Cloud Storage
+- Cloud Firestore
+- Firebase
+- Cloud Run
+## Library We Use
+- Flask
+- Tensorflow
+- CORS
