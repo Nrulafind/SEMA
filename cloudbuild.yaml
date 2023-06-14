@@ -1,0 +1,23 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/primeval-gear-384914/backendsema:latest', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/primeval-gear-384914/backendsema:latest']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'backendsema'  # Replace with your Cloud Run service name
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/backendsema:latest'
+      - '--region'
+      - 'asia-southeast2'  # Replace with your desired region
+
+images:
+  - 'gcr.io/$PROJECT_ID/backendsema:latest'
+
+artifacts:
+  objects:
+    location: 'gs://semaasia'
+    paths: ['**']
