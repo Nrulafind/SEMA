@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.CourseAdapter
 import com.example.parentingapp.adapter.ScoreAdapter
-import com.example.parentingapp.data.Input
 import com.example.parentingapp.data.Score
 import com.example.parentingapp.databinding.ActivityScoreDetailBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +28,6 @@ import cz.msebera.android.httpclient.protocol.HTTP
 import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
-import retrofit2.http.Headers
 import java.io.UnsupportedEncodingException
 
 @Suppress("DEPRECATION")
