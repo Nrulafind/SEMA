@@ -21,9 +21,9 @@ model = tf.keras.models.load_model(model_path)
 def predict():
     input_data_str = request.form.get('input_data')
     try:
-        print(input_data_str)
+        # print(input_data_str)
         input_data = ast.literal_eval(input_data_str)
-        print(input_data)
+        # print(input_data)
         if not isinstance(input_data, list) or len(input_data) != 4:
             return jsonify({'message': 'input_data must contain 4 values in the format [80.5, 90.5, 1.0, 0.1]'}), 400
 
