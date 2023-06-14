@@ -1,46 +1,28 @@
 package com.example.parentingapp.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.view.WindowInsets
-import android.view.WindowManager
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.parentingapp.databinding.ActivitySplashScreenBinding
+import com.example.parentingapp.R
 import com.example.parentingapp.model.SettingPreferences
 import com.example.parentingapp.model.SettingViewModel
 import com.example.parentingapp.model.SettingViewModelFactory
-
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 private val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-@SuppressLint("CustomSplashScreen")
-class SplashScreenActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySplashScreenBinding
-
+class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_setting)
 
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+        val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
         val pref = SettingPreferences.getInstance(dataStore)
         val settingViewModel = ViewModelProvider(this, SettingViewModelFactory(pref)).get(
@@ -49,18 +31,15 @@ class SplashScreenActivity : AppCompatActivity() {
         settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
             }
         }
 
-        supportActionBar?.hide()
-
-        val handler = Handler()
-
-        handler.postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        },3000L)
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingViewModel.saveThemeSetting(isChecked)
+        }
     }
 }

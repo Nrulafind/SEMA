@@ -70,4 +70,5 @@
     <string name="permit">Izin</string>
     <string name="sick">Sakit</string>
     <string name="present">Hadir</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

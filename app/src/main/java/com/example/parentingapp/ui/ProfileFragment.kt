@@ -2,6 +2,7 @@ package com.example.parentingapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -62,6 +63,12 @@ class ProfileFragment : Fragment() {
             return
         }
 
+        binding.clLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+        binding.clTheme.setOnClickListener {
+            startActivity(Intent(requireActivity(), SettingActivity::class.java))
+        }
         binding.btnLogout.setOnClickListener {
             signOut()
         }
