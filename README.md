@@ -13,7 +13,7 @@ CC Division
 1. Use the URL endpoint API
 2. Set the Method POST
 3. Send VIA Request.form or form-data(at postman body)
-4. Input the key and number, ex: key: input_data : [80.0, 90.0, 1.0, 1.0]
+4. Input the key and number, ex: key: input_data Value:  [80.0, 90.0, 1.0, 1.0]
 5. Get the response
 ## Deploy Proccess
 - We'll use cloud run, don't forget to create Dockerfile or use the same as our file.
