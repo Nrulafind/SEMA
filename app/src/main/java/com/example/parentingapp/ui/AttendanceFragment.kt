@@ -34,18 +34,18 @@ class AttendanceFragment : Fragment() {
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMonthList.layoutManager = layoutManager
 
-        list.add(Month(R.drawable.img, "January"))
-        list.add(Month(R.drawable.img_1, "February"))
-        list.add(Month(R.drawable.img_2, "March"))
+        list.add(Month(R.drawable.img, "Januari"))
+        list.add(Month(R.drawable.img_1, "Februari"))
+        list.add(Month(R.drawable.img_2, "Maret"))
         list.add(Month(R.drawable.img_3, "April"))
-        list.add(Month(R.drawable.img_4, "May"))
-        list.add(Month(R.drawable.img_5, "June"))
-        list.add(Month(R.drawable.img_6, "July"))
-        list.add(Month(R.drawable.img_7, "August"))
+        list.add(Month(R.drawable.img_4, "Mei"))
+        list.add(Month(R.drawable.img_5, "Juni"))
+        list.add(Month(R.drawable.img_6, "Juli"))
+        list.add(Month(R.drawable.img_7, "Agustus"))
         list.add(Month(R.drawable.img_8, "September"))
-        list.add(Month(R.drawable.img_9, "October"))
+        list.add(Month(R.drawable.img_9, "Oktober"))
         list.add(Month(R.drawable.img_10, "November"))
-        list.add(Month(R.drawable.img_11, "December"))
+        list.add(Month(R.drawable.img_11, "Desember"))
 
         getData()
 
