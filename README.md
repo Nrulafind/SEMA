@@ -47,9 +47,9 @@ https://app.swaggerhub.com/apis-docs/MNURULANU246/s-eko_lah_bersa_ma_se_ma/1.0.0
 - Postman
 - Cloud Build
 - Cloud Storage
-- Cloud Firestore
-- Firebase
+- Firebase Firestore
 - Cloud Run
+- Swagger
 ## Library We Use
 - Flask
 - Tensorflow
