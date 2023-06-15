@@ -43,7 +43,7 @@
                 android:background="@drawable/custom_transparent_button"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="@string/student_status"
+                android:text="@string/status1"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

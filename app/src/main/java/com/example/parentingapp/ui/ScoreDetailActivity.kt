@@ -119,7 +119,6 @@ class ScoreDetailActivity : AppCompatActivity() {
 //                                binding.status.text = predict.toString()
                                 when (predict2.get(0).toString().toDouble()) {
                                     in 80.0..200.0 -> {
-                                        //          binding.status.text = predict2.get(0).toString()
                                         binding.status.text = resources.getString(R.string.status1)
                                     }
                                     in 60.0..79.9 -> {

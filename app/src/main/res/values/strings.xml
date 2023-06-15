@@ -73,4 +73,5 @@
     <string name="status2">Siswa Berprestasi Menengah</string>
     <string name="status3">Siswa Berprestasi Rendah</string>
     <string name="status4">Memerlukan Tindakan</string>
+    <string name="pesan">Ketik Disini</string>
 </resources>

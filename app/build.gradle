@@ -52,6 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //firebase
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
     implementation 'com.google.firebase:firebase-core:21.1.1'
     implementation 'com.google.firebase:firebase-auth:22.0.0'
@@ -61,6 +62,9 @@ dependencies {
     //auth firebase
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
+    //UI firebase
+    implementation 'com.firebaseui:firebase-ui-auth:4.2.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:4.2.0'
     //UI
     implementation "io.coil-kt:coil-compose:2.2.0"
     implementation 'de.hdodenhof:circleimageview:3.1.0'

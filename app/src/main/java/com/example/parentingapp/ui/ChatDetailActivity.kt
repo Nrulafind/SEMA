@@ -1,4 +1,4 @@
-//package com.example.parentingapp.ui
+package com.example.parentingapp.ui
 //
 //import android.content.Intent
 //import android.os.Bundle
