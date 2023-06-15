@@ -17,13 +17,11 @@
     <string name="student_name">Jeon Jungkook</string>
     <string name="student_grade">XII-A</string>
     <string name="student_semester">Semester Genap</string>
-    <string name="student_status">Outstanding Student</string>
     <string name="app_name">SEMA</string>
     <string name="invalid_email">NIM Harus Berupa Angka</string>
     <string name="invalid_password">Password harus lebih dari 8 karakter</string>
     <string name="register">Register</string>
     <string name="register_question">Belum memiliki akun?</string>
-    <string name="login_label">Login</string>
     <string name="required_field">Harus Diisi</string>
     <string name="auth_label">Masukkan NIM dan Password Siswa</string>
     <string name="success_register">Daftar Berhasil</string>
@@ -31,7 +29,6 @@
     <string name="login_question">Sudah punya akun?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="login_statement">Masukkan NIS Siswa dan Password</string>
     <string name="login_button">MASUK</string>
@@ -70,6 +67,10 @@
     <string name="permit">Izin</string>
     <string name="sick">Sakit</string>
     <string name="present">Hadir</string>
-    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode">Mode Gelap</string>
     <string name="holiday">Libur</string>
+    <string name="status1">Siswa Berprestasi Tinggi</string>
+    <string name="status2">Siswa Berprestasi Menengah</string>
+    <string name="status3">Siswa Berprestasi Rendah</string>
+    <string name="status4">Memerlukan Tindakan</string>
 </resources>
