@@ -14,8 +14,8 @@ CC Division
 3. Send VIA Request.form or form-data(at postman body)
 4. Input the key and number, ex: key: input_data Value:  [80.0, 90.0, 1.0, 1.0]
 5. Get the response
-## HOW TO REPLICATE OUR STEP (DEPLOYMENT TO CLOUD RUN USING CLOUD BUILD)
-Before :
+## Deployment API, with Cloud Build for deployment on Cloud Run
+**Before :**
 - Go to https://cloud.google.com/ , register or login and create a new project.
 - On the navigation at the left side or on the search bar, find or type "Storage Bucket" and click.
 - Make your own bucket name and specified your region. If your bucket region same as your geographical location it will reduce the latency and lower your bill you must pay. 
@@ -25,7 +25,7 @@ Before :
 - We'll use Cloud Run, don't forget to create your own Dockerfile or use the same as our file.
 - Make your own container repository on Artifact Registry. Specify the name of the repository, Docker and your preference region.
 
-Step :
+**Step :**
 1. Go to activate chould shell, you will see the terminal.
 2. Set your project-id, your region, and click authorize.
 
