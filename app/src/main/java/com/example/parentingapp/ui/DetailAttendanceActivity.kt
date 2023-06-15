@@ -27,6 +27,10 @@ class DetailAttendanceActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        supportActionBar?.hide()
+        val month = intent.getStringExtra(EXTRA_MONTH)
+        binding.tvMoth.text = month.toString()
+
         binding.rvAttendance.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(this)
         binding.rvAttendance.layoutManager = layoutManager
@@ -34,26 +38,27 @@ class DetailAttendanceActivity : AppCompatActivity() {
         auth = Firebase.auth
         val userId = auth.currentUser?.uid.toString()
 
-        val score =
-            db.collection("student").document(userId).collection("userData").document(userId)
-        score.get()
+        db.collection("student").document(userId)
+            .collection("userData").document(userId)
+            .get()
             .addOnSuccessListener {
                 if (it != null) {
                     Log.d("success", "DocumentSnapshot data: ${it.data}")
                     binding.studentName.text = it.data?.get("name") as String
                     binding.studentGrade.text = it.data?.get("class") as String
                     binding.studentSemester.text = it.data?.get("angkatan") as String
-                    getDataAttendance(userId)
+                    getDataAttendance(userId, month)
                 } else {
                     Log.d("failed", "Data doesn't exist")
                 }
             }
     }
 
-    private fun getDataAttendance(userId : String) {
+    private fun getDataAttendance(userId : String, month: String?) {
         var listAttendance: ArrayList<Attendance> = ArrayList()
         db.collection("student").document(userId)
             .collection("attendance").document(userId)
+            .collection(month.toString()).document(userId)
             .get()
             .addOnCompleteListener {
                 var attendance: Attendance
@@ -77,5 +82,8 @@ class DetailAttendanceActivity : AppCompatActivity() {
                     binding.rvAttendance.adapter = adapter
                 }
             }
+    }
+    companion object {
+        const val EXTRA_MONTH = "extra_month"
     }
 }

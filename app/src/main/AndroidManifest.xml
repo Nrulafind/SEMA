@@ -21,6 +21,9 @@
             android:name=".ui.DetailAttendanceActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ScoreDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
