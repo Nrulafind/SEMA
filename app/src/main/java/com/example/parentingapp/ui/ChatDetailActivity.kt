@@ -1,115 +1,141 @@
 package com.example.parentingapp.ui
-//
-//import android.content.Intent
-//import android.os.Bundle
-//import android.view.Menu
-//import android.view.MenuItem
-//import android.widget.ProgressBar
-//import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import com.example.parentingapp.R
-//import com.example.parentingapp.adapter.FirebaseMessageAdapter
-//import com.example.parentingapp.databinding.ActivityChatDetailBinding
-//import com.example.parentingapp.model.Message
-//import com.firebase.ui.database.FirebaseRecyclerOptions
-//
-//import com.google.firebase.database.FirebaseDatabase
-//import com.google.firebase.database.ktx.database
-//import com.google.firebase.ktx.Firebase
-//import java.util.*
-//
-//class ChatDetailActivity : AppCompatActivity() {
-//
-//    private lateinit var binding: ActivityChatDetailBinding
-////    private lateinit var auth: FirebaseAuth
-//
-//    private lateinit var db: FirebaseDatabase
-//    private lateinit var adapter: FirebaseMessageAdapter
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityChatDetailBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-////        auth = Firebase.auth
-//        val firebaseUser = Message(
-//            "",
-//            "Dico",
-//            "https://i.pinimg.com/736x/ab/40/ac/ab40acafe4e48005a64a3055f2c0796e.jpg"
-//        )
-////        if (firebaseUser == null) {
-////            // Not signed in, launch the Login activity
-////            startActivity(Intent(this, LoginActivity::class.java))
-////            finish()
-////            return
-////        }
-//
-//        db = Firebase.database
-//
-//        val messagesRef = db.reference.child(MESSAGES_CHILD)
-//
-//        binding.sendButton.setOnClickListener {
-//            val friendlyMessage = Message(
-//                binding.messageEditText.text.toString(),
-//                firebaseUser.name,
-//                firebaseUser.photoUrl,
-//                Date().time
-//            )
-//            messagesRef.push().setValue(friendlyMessage) { error, _ ->
-//                if (error != null) {
-//                    Toast.makeText(this, getString(R.string.send_error) + error.message, Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(this, getString(R.string.send_success), Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            binding.messageEditText.setText("")
-//        }
-//
-//        val manager = LinearLayoutManager(this)
-//        manager.stackFromEnd = true
-//        binding.messageRecyclerView.layoutManager = manager
-//
-//        val options = FirebaseRecyclerOptions.Builder<Message>()
-//            .setQuery(messagesRef, Message::class.java)
-//            .build()
-//        adapter = FirebaseMessageAdapter(options, firebaseUser.name)
-//        binding.messageRecyclerView.adapter = adapter
-//    }
-//
-//    public override fun onResume() {
-//        super.onResume()
-//        adapter.startListening()
-//    }
-//
-//    public override fun onPause() {
-//        adapter.stopListening()
-//        super.onPause()
-//    }
-//
-////    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-////        val inflater = menuInflater
-////        inflater.inflate(R.menu.main_menu, menu)
-////        return true
-////    }
-////
-////    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-////        return when (item.itemId) {
-////            R.id.sign_out_menu -> {
-////                signOut()
-////                true
-////            }
-////            else -> super.onOptionsItemSelected(item)
-////        }
-////    }
-////
-////    private fun signOut() {
-////        auth.signOut()
-////        startActivity(Intent(this, LoginActivity::class.java))
-////        finish()
-////    }
-//
-//    companion object {
-//        const val MESSAGES_CHILD = "messages"
-//    }
-//}
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.parentingapp.R
+import com.example.parentingapp.data.Contact
+import com.example.parentingapp.databinding.ActivityChatDetailBinding
+import com.example.parentingapp.model.Message
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.google.firebase.firestore.FirebaseFirestore
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
+
+@Suppress("DEPRECATION")
+class ChatDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityChatDetailBinding
+    private var rootRef: FirebaseFirestore? = null
+    private var fromUid: String? = ""
+    private var adapter: MessageAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityChatDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        rootRef = FirebaseFirestore.getInstance()
+
+        supportActionBar?.hide()
+
+        val fromUser = intent.extras?.get("fromUser") as Contact
+        fromUid = fromUser.UID
+        var fromRooms = fromUser.rooms
+        val toUser = intent.extras!!.get("toUser") as Contact
+        val toUid = toUser.UID
+        var toRooms = toUser.rooms
+
+        var roomId = intent.extras!!.get("roomId") as String
+
+        if (roomId == "noRoomId") {
+            roomId = rootRef!!.collection("messages").document().id
+            if (fromRooms != null) {
+                for ((key, _) in fromRooms) {
+                    if (toRooms != null){
+                        if (toRooms.contains(key)){
+                            roomId = key
+                        }
+                    }
+                }
+            }
+        }
+        binding.send.setOnClickListener {
+            if (fromRooms == null) {
+                fromRooms = mutableMapOf()
+            }
+            fromRooms!![roomId] = true
+            fromUser.rooms = fromRooms
+            rootRef!!.collection("teacher").document(fromUid!!).set(fromUser, SetOptions.merge())
+            rootRef!!.collection("contact").document(toUid).collection("userContact").document(fromUid!!).set(fromUser, SetOptions.merge())
+            rootRef!!.collection("rooms").document(toUid).collection("userRooms").document(roomId).set(fromUser, SetOptions.merge())
+
+            if (toRooms == null) {
+                toRooms = mutableMapOf()
+            }
+            toRooms!![roomId] = true
+            toUser.rooms = toRooms
+            rootRef!!.collection("teacher").document(toUid).set(toUser, SetOptions.merge())
+            rootRef!!.collection("contact").document(fromUid!!).collection("userContact").document(toUid).set(toUser, SetOptions.merge())
+            rootRef!!.collection("rooms").document(fromUid!!).collection("userRooms").document(roomId).set(toUser, SetOptions.merge())
+
+            val messageText = binding.editText.text.toString()
+            val message = Message(messageText, fromUid!!)
+            rootRef!!.collection("messages").document(roomId).collection("roomMessages").add(message)
+            binding.editText.text.clear()
+        }
+
+        val query = rootRef!!.collection("messages").document(roomId).collection("roomMessages").orderBy("sentAt", Query.Direction.ASCENDING)
+        val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
+        adapter = MessageAdapter(options)
+        binding.recyclerView.adapter = adapter
+
+        title = toUser.name
+
+        binding.backIcon.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    inner class MessageViewHolder internal constructor(private val view: View) : RecyclerView.ViewHolder(view){
+        internal fun setMessage(message: Message) {
+            binding.textView4.text = message.messageText
+        }
+    }
+
+    inner class MessageAdapter internal constructor(options: FirestoreRecyclerOptions<Message>) : FirestoreRecyclerAdapter<Message, MessageViewHolder>(options){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+            return if (viewType == R.layout.item_message_to) {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_to, parent, false)
+                MessageViewHolder(view)
+            } else {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_from, parent, false)
+                MessageViewHolder(view)
+            }
+        }
+
+        override fun onBindViewHolder(holder: MessageViewHolder, position: Int, model: Message) {
+            holder.setMessage(model)
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            return if (fromUid!! != getItem(position).fromUid) {
+                R.layout.item_message_to
+            } else {
+                R.layout.item_message_from
+            }
+        }
+
+        override fun onDataChanged() {
+            binding.recyclerView.layoutManager?.scrollToPosition(itemCount - 1)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (adapter != null) {
+            adapter!!.startListening()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (adapter != null) {
+            adapter!!.stopListening()
+        }
+    }
+}

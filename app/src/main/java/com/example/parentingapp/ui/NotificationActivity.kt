@@ -43,26 +43,21 @@ class NotificationActivity : AppCompatActivity() {
             Notification(
                 R.drawable.img_news1,
                 "Yeay! Study Tour",
-                "Sesuai dengan program sekolah dan hasil sosialisasi pada tanggal 15 Oktober 2018, dengan ini diberitahukan bahwa Study Tour (Wisata Siswa) yang akan dilaksanakan pada bulan Desember 2018 (sekitar tanggal 9 Desember 2018/ minggu ke-2). Salah satu pertimbangannya adalah mengantisipasi rencana kenaikan BBM, sehingga beban biaya study tour bisa ditekan lebih rendah (yaitu Rp. 875.000)."
+                getString(R.string.desc_news1)
             )
         )
         list.add(
             Notification(
                 R.drawable.img_news2,
                 "Ujian Akhir Semester",
-                "Sehubungan dengan akan dilaksanakan Ujian Akhir Semester Tahun Akademik Ganjil 2022/2023 sesuai dengan Surat Kepala Biro Administrasi Akademik Tanggal 21 Desember 2022 Perihal Tentang Pemberitahuan Ujian Akhir Semester, maka dengan ini kami memberitahukan bahwa :\n" +
-                        "1. Ujian Akhir Semester Ganjil 2022/2023 dilaksanakan pada Tanggal 16 s/d 21 Januari 2023.\n" +
-                        "2.Ujian dapat dilaksanakan oleh Dosen apabila perkuliahan sudah mencapai Minimal 85%.\n" +
-                        "3. Mahasiswa dapat mengikuti ujian apabila sudah melunasi SPP Tahap II dan memiliki kartu ujian yang dicetak oleh Akademik Fakultas (SBAK)."
+                getString(R.string.desc_news2)
             )
         )
         list.add(
             Notification(
                 R.drawable.img_news3,
                 "Pembagian Rapot",
-                "Berkenaan dengan Pandemi Covid-19, maka pembagian Raport Semester Genap Tahun 2020/2021 akan dilaksanakan secara online pada Hari Senin, 28 Juni 2021 melalui website resmi SMK Negeri 21 Jakarta. \n" +
-                        "\n" +
-                        "Pembagian Raport Semester Genap Tahun 2020/2021 melalui online ini bukan merupakan pengganti Raport Cetak. Raport asli akan diberikan secara offline dengan menunggu pemberitahuan resmi dari Pemerintah terkait Pembatasan Sosial Berskala Besar. "
+                getString(R.string.desc_news3)
             )
         )
         return list

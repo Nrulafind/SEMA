@@ -27,6 +27,7 @@
             android:layout_alignParentEnd="true"
             android:background="@color/white_75"
             android:paddingTop="4dp"
+            android:maxLines="1"
             android:gravity="center"
             android:textSize="10sp"
             android:textColor="@color/black"
@@ -42,6 +43,7 @@
             android:background="@color/white_75"
             android:paddingBottom="4dp"
             android:gravity="center"
+            android:maxLines="1"
             android:textSize="8sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>

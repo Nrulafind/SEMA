@@ -1,11 +1,14 @@
 package com.example.parentingapp.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parentingapp.data.News
 import com.example.parentingapp.databinding.ItemNewsBinding
+import com.example.parentingapp.ui.NewsDetailActivity
+import com.example.parentingapp.ui.NotifDetailActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,5 +36,17 @@ class NewsAdapter(private var listNews: ArrayList<News>): RecyclerView.Adapter<N
         holder.binding.ivNews.setImageResource(newsData.image)
         holder.binding.tvNewsTitle.text = newsData.title
         holder.binding.tvNewsDescription.text = newsData.description
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, NewsDetailActivity::class.java).apply {
+                putExtra(EXTRA_NEWS, newsData)
+            }
+
+            holder.itemView.context.startActivity(intent)
+        }
+    }
+
+    companion object {
+        const val EXTRA_NEWS = "extra_news"
     }
 }

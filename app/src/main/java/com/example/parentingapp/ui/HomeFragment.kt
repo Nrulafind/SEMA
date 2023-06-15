@@ -6,12 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.*
-import android.widget.TextView
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -24,7 +22,6 @@ import com.example.parentingapp.data.Post
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
 import java.util.*
-import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
@@ -85,21 +82,24 @@ class HomeFragment : Fragment() {
                 super.onPageSelected(position)
             }
         })
-        
+
         addListNews()
         addListPost()
 
         newsAdapter = NewsAdapter(listNews)
         postAdapter = PostAdapter(listPost)
-        binding.rvNews.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.rvNews.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPost.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvNews.adapter = newsAdapter
         binding.rvPost.adapter = postAdapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                filterList(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -107,51 +107,95 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-//        binding.searchView.setOnCloseListener {
-//        binding.viewpager.visibility = View.VISIBLE
-//        binding.indicator.visibility = View.VISIBLE
-//            val intent = Intent(requireActivity(), HomeFragment::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
-//            false
-//        }
+
+        binding.searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewpager.visibility = View.GONE
+                binding.indicator.visibility = View.GONE
+                binding.fbMessage.visibility = View.GONE
+            } else {
+                binding.viewpager.visibility = View.VISIBLE
+                binding.indicator.visibility = View.VISIBLE
+                binding.fbMessage.visibility = View.VISIBLE
+            }
+        }
 
         binding.imageView.setOnClickListener {
             val intent = Intent(requireContext(), NotificationActivity::class.java)
             startActivity(intent)
         }
+
+        binding.fbMessage.setOnClickListener {
+            val intent = Intent(requireContext(), ChatActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun filterList(query: String?) {
-        if (query != null){
+        if (query != null) {
             val filterList = ArrayList<News>()
-            for(i in listNews){
+            for (i in listNews) {
                 if (i.title.toLowerCase(Locale.ROOT).contains(query))
                     filterList.add(i)
             }
-            if (filterList.isEmpty()){
+            if (filterList.isEmpty()) {
                 Toast.makeText(requireActivity(), "No Data Found", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 newsAdapter.setFilteredList(filterList)
             }
-            binding.viewpager.visibility = View.GONE
-            binding.indicator.visibility = View.GONE
-        } else{
-            binding.viewpager.visibility = View.VISIBLE
-            binding.indicator.visibility = View.VISIBLE
         }
     }
 
     private fun addListNews() {
-        listNews.add(News(R.drawable.img_news1, "STUDY TOUR KELAS 12", "Dalam rangka perpisahan kelas.."))
-        listNews.add(News(R.drawable.img_news2, "UJIAN AKHIR SEMESTER", "Dengan ini kami mengumumkan."))
-        listNews.add(News(R.drawable.img_news3, "PEMBAGIAN RAPOT", "Pembagian rapot akan dilakukan"))
-        listNews.add(News(R.drawable.img_news4, "LIBUR SEMESTER", "Libur semester genap akan di..."))
+        listNews.add(
+            News(
+                R.drawable.img_news1,
+                "STUDY TOUR KELAS 12",
+                getString(R.string.desc_news1)
+            )
+        )
+        listNews.add(
+            News(
+                R.drawable.img_news2,
+                "UJIAN AKHIR SEMESTER",
+                getString(R.string.desc_news2)
+            )
+        )
+        listNews.add(
+            News(
+                R.drawable.img_news3,
+                "PEMBAGIAN RAPOT",
+                getString(R.string.desc_news3)
+            )
+        )
+        listNews.add(
+            News(
+                R.drawable.img_news4,
+                "LIBUR SEMESTER",
+                getString(R.string.desc_news4)
+            )
+        )
     }
 
     private fun addListPost() {
-        listPost.add(Post(R.drawable.img_post1, R.drawable.img_teacher1, "Pak Jung", "Baru Saja"))
-        listPost.add(Post(R.drawable.img_post2, R.drawable.img_teacher2, "Bu Kim", "2 Jam yang lalu"))
+        listPost.add(
+            Post(
+                R.drawable.img_post1,
+                R.drawable.img_teacher1,
+                "Pak Jung",
+                "Baru Saja",
+                "deskripsi"
+            )
+        )
+        listPost.add(
+            Post(
+                R.drawable.img_post2,
+                R.drawable.img_teacher2,
+                "Bu Kim",
+                "2 Jam yang lalu",
+                "deskripsi"
+            )
+        )
     }
 
     override fun onDestroyView() {

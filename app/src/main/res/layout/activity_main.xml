@@ -28,19 +28,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_addStory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/dark_green"
-        android:contentDescription="@string/chat"
-        android:src="@drawable/chat_icon"
-        android:tintMode="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="32dp" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fb_addStory"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:backgroundTint="@color/dark_green"-->
+<!--        android:contentDescription="@string/chat"-->
+<!--        android:src="@drawable/chat_icon"-->
+<!--        android:tintMode="@color/white"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nav_view"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:maxImageSize="32dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
