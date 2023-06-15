@@ -17,3 +17,4 @@ steps:
       - 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest'
       - '--region'
       - 'asia-southeast2'  # Replace with your desired region
+      - '--allow-unauthenticated'
