@@ -70,8 +70,7 @@ When prompted up showing click AUTHORIZE.
 ## API URL Endpoint
 https://backendsema-x6blq7wjaa-et.a.run.app/api/predict 
 ## API Documentation 
-https://app.swaggerhub.com/apis-docs/MNURULANU246/s-eko_lah_bersa_ma_se_ma/1.0.0#/predict/input_data 
-
+[Documentation Using Swagger Tools and Deploy at Github Pages](https://nrulafind.github.io/SEMA/)
 ## Tools We Use
 - Visual Studio Code
 - Postman
