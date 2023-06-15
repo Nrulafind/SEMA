@@ -138,10 +138,16 @@ class HomeFragment : Fragment() {
                 if (i.title.toLowerCase(Locale.ROOT).contains(query))
                     filterList.add(i)
             }
+            val postList = ArrayList<Post>()
+            for (i in listPost) {
+                if (i.teacherName.toLowerCase(Locale.ROOT).contains(query))
+                    postList.add(i)
+            }
             if (filterList.isEmpty()) {
                 Toast.makeText(requireActivity(), "No Data Found", Toast.LENGTH_SHORT).show()
             } else {
                 newsAdapter.setFilteredList(filterList)
+                postAdapter.setFilteredList(postList)
             }
         }
     }

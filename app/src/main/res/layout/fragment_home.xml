@@ -64,7 +64,6 @@
                                     android:id="@+id/searchView"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/button"
                                     app:iconifiedByDefault="false"
                                     app:queryHint="@string/search_hint" />
 
@@ -89,7 +88,7 @@
                             android:layout_marginStart="25dp"
                             android:layout_marginTop="25dp"
                             android:text="@string/news"
-                            android:textColor="@color/black"
+                            android:textColor="?android:textColorPrimary"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +110,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="@string/post"
-                            android:textColor="@color/black"
+                            android:textColor="?android:textColorPrimary"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@+id/textView3"
