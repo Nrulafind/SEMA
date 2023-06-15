@@ -1,5 +1,5 @@
-# SEMA
-Repository for Capstone Product Based Bangkit
+# C23-PS367 SEMA 
+Repository for Capstone Product Based Bangkit C23-PS367
 
 ## Capstone Project Team
 
