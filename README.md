@@ -36,33 +36,34 @@ When prompted up showing click AUTHORIZE.
   
 3. Copy this github repository-branch "CC" (the API that will be deployed located only on this branch)
 4. After done
-Type "cd + 'name of a folder that contains cloned github files') <cd ( folder name )> Example: <cd SEMA>
+    + type "cd + 'name of a folder that contains cloned github files') <cd ( folder name )> Example: <cd SEMA>
 5. You're now on SEMA directory.
 6. Go to Cloud Shell Editor for build your own cloudbuild.yaml file. 
   
-  From our cloudbuild.yaml -> 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest'
-  asia-southeast2-docker.pkg.dev = artifact registry in asia-southeast2
-  primeval-gear-384914 = project ID
-  sekolahbersama = repository name in artifact registry
-  backendsema:latest = our cloud run service name
+  + From our cloudbuild.yaml -> 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest'
+    
+  + asia-southeast2-docker.pkg.dev = artifact registry in asia-southeast2
+  + primeval-gear-384914 = project ID
+  + sekolahbersama = repository name in artifact registry
+  + backendsema:latest = our cloud run service name
   
   You could modify this with your own project id, your own repository, also your ouwn cloud run service name.
   
 7. Back to cloud shell terminal and type 
    <gcloud builds submit --gcs-source-staging-dir="gs://<your-bucket-name>/cloudbuild-custom" --config cloudbuild.yaml> 
     
-     note: 
+     + note: 
      gs://<your-bucket-name> is the name of your bucket name you've been created before.
      
    + Press ENTER
 
 8. Just waiting for around 15 minutes it will start build with step you've been specified in cloudbuild.yaml before.
-     -If there's no error; Command will deliver status SUCCESS. And you've your own deployed link.
-     -If there's  error, there's some additional info that you must know :
+     + If there's no error; Command will deliver status SUCCESS. And you've your own deployed link.
+     + If there's  error, there's some additional info that you must know :
      
-      -Maybe the port you've specified define at the app.py doesn't match with your Dockerfile or the way you write the PORT on app.py          file didn't meet google cloud requirements. 
-      -Maybe your own cloudbuild.yaml config return status error.
-      -or maybe your Dockerfile step, there's missing.
+      + Maybe the port you've specified define at the app.py doesn't match with your Dockerfile or the way you write the PORT on app.py          file didn't meet google cloud requirements. 
+      + Maybe your own cloudbuild.yaml config return status error.
+      + or maybe your Dockerfile step, there's missing.
 
 9. To verify your deployed API, you could type on the searchbar "Cloud Run" see your cloud run service-name. If there's green check, so that the deployment was running.
 10. You could re-deploy for many times in Cloud Run and change the percentage of the traffic with both of (the latest and the last) and it doesn't affect the service-name and URL deployed. (the deployment service-name and URL deployed will be still the same)   
