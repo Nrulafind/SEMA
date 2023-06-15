@@ -37,7 +37,7 @@ When prompted up showing click AUTHORIZE.
 3. Copy this github repository-branch "CC" (the API that will be deployed located only on this branch)
 4. After done
     + type "cd + 'name of a folder that contains cloned github files') <cd ( folder name )> 
-                + Example: <cd SEMA>
+    + Example: <cd SEMA>
 5. You're now on SEMA directory.
 6. Go to Cloud Shell Editor for build your own cloudbuild.yaml file. 
   
