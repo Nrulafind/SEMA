@@ -55,7 +55,7 @@ When prompted up showing click AUTHORIZE.
    + note: 
      gs://<your-bucket-name> is the name of your bucket name you've been created before.
      
-      + Press ENTER
+   + Press ENTER
 
 8. Just waiting for around 15 minutes it will start build with step you've been specified in cloudbuild.yaml before.
    + If there's no error; Command will deliver status SUCCESS. And you've your own deployed link.
@@ -75,10 +75,10 @@ https://app.swaggerhub.com/apis-docs/MNURULANU246/s-eko_lah_bersa_ma_se_ma/1.0.0
 - Visual Studio Code
 - Postman
 - Cloud Build 
-- Cloud Storage for gs://semaasia and saved file from firebase storage too
+- Cloud Storage for bucket storage also saved the same file from firebase storage.
 - Firebase Auth for Authentication
 - Firebase Firestore for database storage and set authorization regarding 'uid' Firebase Auth should 'match Firestore documentID'.
-- Firebase Storage for save profile photo and saved url link to Firestore
+- Firebase Storage for save profile photo and saved url link to Firestore.
 - Cloud Run 
 - SwaggerHub for UI API Documentations, Swagger Online Editor for edit API Documentations.
 ## Library We Use
