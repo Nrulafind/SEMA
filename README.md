@@ -34,7 +34,7 @@ CC Division
   
 When prompted up showing click AUTHORIZE.
   
-3. Copy this github repositor-branch "CC" (the API that will be deployed located only on this branch)
+3. Copy this github repository-branch "CC" (the API that will be deployed located only on this branch)
 4. After done
 Type "cd + 'name of a folder that contains cloned github files')
             <cd ( folder name )>
