@@ -3,13 +3,10 @@ package com.example.parentingapp.ui
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parentingapp.R
-import com.example.parentingapp.adapter.CourseAdapter
 import com.example.parentingapp.adapter.ScoreAdapter
-import com.example.parentingapp.data.Input
 import com.example.parentingapp.data.Score
 import com.example.parentingapp.databinding.ActivityScoreDetailBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -19,18 +16,9 @@ import com.google.firebase.ktx.Firebase
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.loopj.android.http.RequestParams
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import cz.msebera.android.httpclient.Header
-import cz.msebera.android.httpclient.entity.StringEntity
-import cz.msebera.android.httpclient.message.BasicHeader
-import cz.msebera.android.httpclient.protocol.HTTP
-import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
-import retrofit2.http.Headers
-import java.io.UnsupportedEncodingException
 
 @Suppress("DEPRECATION")
 class ScoreDetailActivity : AppCompatActivity() {
@@ -38,7 +26,6 @@ class ScoreDetailActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     var db = Firebase.firestore
     var listInput: ArrayList<Double> = ArrayList(4)
-    private var predict: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,8 +63,9 @@ class ScoreDetailActivity : AppCompatActivity() {
     }
 
     private fun getData(userId: String, course: String?) {
-        var listScore: ArrayList<Score> = ArrayList()
-        db.collection("student").document(userId).collection("Score").document(userId).collection(course.toString()).document(userId)
+        val listScore: ArrayList<Score> = ArrayList()
+        db.collection("student").document(userId).collection("Score").document(userId)
+            .collection(course.toString()).document(userId)
             .get()
             .addOnCompleteListener {
                 var score: Score
@@ -94,7 +82,9 @@ class ScoreDetailActivity : AppCompatActivity() {
                                 "$nilai",
                                 "$kkm"
                             )
-                            if (name == "UTS" || name == "UAS") listInput.add(nilai.toString().toDouble())
+                            if (name == "UTS" || name == "UAS") listInput.add(
+                                nilai.toString().toDouble()
+                            )
                             listScore.add(score)
                         }
                     }
@@ -117,7 +107,7 @@ class ScoreDetailActivity : AppCompatActivity() {
                         override fun onSuccess(
                             statusCode: Int,
                             headers: Array<out Header>,
-                            responseBody: ByteArray
+                            responseBody: ByteArray,
                         ) {
                             val result = String(responseBody)
                             Log.d("TAG", result)
@@ -125,28 +115,41 @@ class ScoreDetailActivity : AppCompatActivity() {
                                 val responseObject = JSONObject(result)
                                 val predict = responseObject.getJSONArray("results")
                                 val predict2: JSONArray = predict.get(0) as JSONArray
-                                val status = predict2.get(0).toString().toDouble()
-//                                predict = quote2.getDouble(0)
+                                //                                predict = quote2.getDouble(0)
 //                                binding.status.text = predict.toString()
-                                if (status >= 80.0){
-//                                    binding.status.text = predict2.get(0).toString()
-                                    binding.status.text = "Siswa Berprestasi"
-                                } else {
-                                    binding.status.text = "Memerlukan Tindakan"
+                                when (predict2.get(0).toString().toDouble()) {
+                                    in 80.0..200.0 -> {
+                                        //          binding.status.text = predict2.get(0).toString()
+                                        binding.status.text = resources.getString(R.string.status1)
+                                    }
+                                    in 60.0..79.9 -> {
+                                        binding.status.text = resources.getString(R.string.status2)
+                                    }
+                                    in 40.0..59.9 -> {
+                                        binding.status.text = resources.getString(R.string.status3)
+                                    }
+                                    else -> {
+                                        binding.status.text = resources.getString(R.string.status4)
+                                    }
                                 }
 
                             } catch (e: Exception) {
-                                Toast.makeText(this@ScoreDetailActivity, e.message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@ScoreDetailActivity,
+                                    e.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 e.printStackTrace()
                             }
                         }
+
                         override fun onFailure(
                             statusCode: Int,
                             headers: Array<out Header>,
                             responseBody: ByteArray?,
-                            error: Throwable?
+                            error: Throwable?,
                         ) {
-                            headers?.let {
+                            headers.let {
                                 val errorMessage = when (statusCode) {
                                     400 -> "$statusCode : Bad Request"
                                     401 -> "$statusCode : Unauthorized"
@@ -154,7 +157,11 @@ class ScoreDetailActivity : AppCompatActivity() {
                                     404 -> "$statusCode : Not Found"
                                     else -> "$statusCode : ${error?.message}"
                                 }
-                                Toast.makeText(this@ScoreDetailActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@ScoreDetailActivity,
+                                    errorMessage,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 Log.d("TAG", errorMessage)
                             }
                         }
