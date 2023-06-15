@@ -1,11 +1,11 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/my-repo/backendsema:latest', '.']
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest', '.']
 
   # Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/my-repo/backendsema:latest']
+    args: ['push', 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -14,6 +14,6 @@ steps:
       - 'deploy'
       - 'backendsema'  # Replace with your Cloud Run service name
       - '--image'
-      - 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/my-repo/backendsema:latest'
+      - 'asia-southeast2-docker.pkg.dev/primeval-gear-384914/sekolahbersama/backendsema:latest'
       - '--region'
       - 'asia-southeast2'  # Replace with your desired region
