@@ -18,7 +18,7 @@ CC Division
 **Before :**
 - Go to https://cloud.google.com/ , register or login and create a new project.
 - On the navigation at the left side or on the search bar, find or type "Storage Bucket" and click.
-- Make your own bucket name and specified your region. If your bucket region same as your geographical location it will reduce the latency and lower your bill you must pay. 
+- Make your own bucket name and specified your region. If your bucket region same as your geographical location it will reduce the latency and lower your billing. 
 - Make sure before that you've activated your Cloud Build API, Cloud Run API, Artifact Registry API also enable your billing project.
 - Go to Cloud Build -> Settings -> Enable Cloud Run and Service Accounts.
 - We'll use Cloud Build for activate cloudbuild.yaml for simplified the process until deployment to Cloud Run. We've to only type one command to cloud shell.
