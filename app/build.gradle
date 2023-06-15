@@ -62,9 +62,6 @@ dependencies {
     //auth firebase
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
-    //UI firebase
-    implementation 'com.firebaseui:firebase-ui-auth:4.2.0'
-    implementation 'com.firebaseui:firebase-ui-firestore:4.2.0'
     //UI
     implementation "io.coil-kt:coil-compose:2.2.0"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
