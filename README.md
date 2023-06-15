@@ -78,6 +78,7 @@ https://app.swaggerhub.com/apis-docs/MNURULANU246/s-eko_lah_bersa_ma_se_ma/1.0.0
 - Cloud Storage for gs://semaasia and saved file from firebase storage too
 - Firebase Auth for Authentication
 - Firebase Firestore for database storage and set authorization regarding 'uid' Firebase Auth should 'match Firestore documentID'.
+- Firebase Storage for save profile photo and saved url link to Firestore
 - Cloud Run 
 - SwaggerHub for UI API Documentations, Swagger Online Editor for edit API Documentations.
 ## Library We Use
