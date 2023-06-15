@@ -23,23 +23,23 @@ CC Division
 - Make sure before that you've activated your Cloud Build API, Cloud Run API  also and enable your billing project.
 - We'll use Cloud Build API for one button type deployment to Deploy on Cloud Run.
 1. Go to cloud console, by using command.
-2. Set your project by your preference region. Like..
+2. Set your project by your preference region. 
+  <gcloud config set compute/region asia-southeast2>
 3. Copy this github link 
 4. After done
 Type cd go to the folder that contains github files
-<Cd ( folder name )>
-Example cd SEMA
+<cd ( folder name )>
+Example <cd SEMA>
 5. You now on SEMA directory.
-6. Go to Cloud Code Editor for build your own cloudbuild.yaml
- Or use our file at github.
-7. Back to cloud console (command) and type gcloud build submit config cloudbuild.yaml 
+6. Go to Cloud Code Editor for build your own cloudbuild.yaml if you want to use artifact registry or using our file to build with container registry
+7. Back to cloud console (command) and type <gcloud builds submit --gcs-source-staging-dir="gs://<your-bucket-name>/cloudbuild-custom" --config cloudbuild.yaml> 
 8. Just waiting for around 15 minutes. If there's  error, there's some add info that u must know
--Maybe the port you've define
+-Maybe the port you've specified define at the app.py
 -maybe your own cloudbuild.yaml config
--or maybe your dockerfile
-9. If there's no error; Command will deliver status SUCCESS. And you've your own link.
-10. 10. Go to your services by type Cloud Run in search bar or the navigation. Select your service-name that you've been specified before.
-11. You could re deploy for many times in Cloud Run and change the percentage of the traffic with both of (the latest and the last) - the deployment service with the same service name and the same final url result too.
+-or maybe your Dockerfile step
+9. If there's no error; Command will deliver status SUCCESS. And you've your own deployed link.
+10 Go to your services by type Cloud Run in search bar or the navigation. Select your service-name that you've been specified before. 
+11. You could re-deploy for many times in Cloud Run and change the percentage of the traffic with both of (the latest and the last) - the deployment service with the same service name and the same final url result too.
 ## API URL Endpoint
 https://backendsema-x6blq7wjaa-et.a.run.app/api/predict 
 ## API Documentation 
