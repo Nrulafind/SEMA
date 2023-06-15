@@ -17,6 +17,10 @@ model_path = 'score_model.h5'
 # Load the model
 model = tf.keras.models.load_model(model_path)
 
+@app.route('/', methods=['GET'])
+def index():
+    return "<h1>Welcome Visitor<h1><br><br><center>-Sekolah Bersama-<center>"
+
 @app.route('/api/predict', methods=['POST'])
 def predict():
     input_data_str = request.form.get('input_data')
