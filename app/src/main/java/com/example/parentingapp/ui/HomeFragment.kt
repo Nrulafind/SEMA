@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -21,6 +23,8 @@ import com.example.parentingapp.data.News
 import com.example.parentingapp.data.Post
 import com.example.parentingapp.databinding.FragmentHomeBinding
 import com.example.parentingapp.model.SliderData
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
@@ -32,6 +36,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: SliderAdapter
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var postAdapter: PostAdapter
+    private lateinit var searchView: SearchView
     private val listNews = ArrayList<News>()
     private val listPost = ArrayList<Post>()
 
@@ -91,32 +96,49 @@ class HomeFragment : Fragment() {
         binding.rvNews.adapter = newsAdapter
         binding.rvPost.adapter = postAdapter
 
-
-
-        binding.searchView.queryHint = getString(R.string.search_hint)
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Metode ini dipanggil saat pengguna menekan tombol Submit pada keyboard
-                if (!query.isNullOrEmpty()) {
-                    performSearch(query, listNews)
-                }
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Metode ini dipanggil saat teks pencarian berubah
-                if (!newText.isNullOrEmpty()) {
-                    newsAdapter.filter(newText)
-                } else {
-                    // Jika teks pencarian kosong, lakukan sesuatu
-                }
+                filterList(newText)
                 return true
             }
         })
+//        binding.searchView.setOnCloseListener {
+//        binding.viewpager.visibility = View.VISIBLE
+//        binding.indicator.visibility = View.VISIBLE
+//            val intent = Intent(requireActivity(), HomeFragment::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(intent)
+//            false
+//        }
 
         binding.imageView.setOnClickListener {
             val intent = Intent(requireContext(), NotificationActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun filterList(query: String?) {
+        if (query != null){
+            val filterList = ArrayList<News>()
+            for(i in listNews){
+                if (i.title.toLowerCase(Locale.ROOT).contains(query))
+                    filterList.add(i)
+            }
+            if (filterList.isEmpty()){
+                Toast.makeText(requireActivity(), "No Data Found", Toast.LENGTH_SHORT).show()
+            }else{
+                newsAdapter.setFilteredList(filterList)
+            }
+            binding.viewpager.visibility = View.GONE
+            binding.indicator.visibility = View.GONE
+        } else{
+            binding.viewpager.visibility = View.VISIBLE
+            binding.indicator.visibility = View.VISIBLE
         }
     }
 
@@ -130,14 +152,6 @@ class HomeFragment : Fragment() {
     private fun addListPost() {
         listPost.add(Post(R.drawable.img_post1, R.drawable.img_teacher1, "Pak Jung", "Baru Saja"))
         listPost.add(Post(R.drawable.img_post2, R.drawable.img_teacher2, "Bu Kim", "2 Jam yang lalu"))
-    }
-
-    private fun performSearch(query: String, listNews: ArrayList<News>) {
-        var listFil = ArrayList<News>()
-        for(query in listNews){
-            listFil.add(query)
-        }
-        Log.d("Search", "Query: $query")
     }
 
     override fun onDestroyView() {
@@ -164,7 +178,7 @@ class HomeFragment : Fragment() {
                 dots[i].setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.light_green
+                        R.color.dark_orange
                     )
                 )
             } else {
