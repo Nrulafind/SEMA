@@ -125,14 +125,20 @@ class HomeFragment : Fragment() {
     private fun filterList(query: String?) {
         if (query != null){
             val filterList = ArrayList<News>()
+            val filterPost = ArrayList<Post>()
             for(i in listNews){
                 if (i.title.toLowerCase(Locale.ROOT).contains(query))
                     filterList.add(i)
+            }
+            for(i in listPost){
+                if (i.teacherName.toLowerCase(Locale.ROOT).contains(query))
+                    filterPost.add(i)
             }
             if (filterList.isEmpty()){
                 Toast.makeText(requireActivity(), "No Data Found", Toast.LENGTH_SHORT).show()
             }else{
                 newsAdapter.setFilteredList(filterList)
+                postAdapter.setFilteredList(filterPost)
             }
             binding.viewpager.visibility = View.GONE
             binding.indicator.visibility = View.GONE
