@@ -76,9 +76,9 @@ https://backendsema-x6blq7wjaa-et.a.run.app/api/predict
 - Postman
 - Cloud Build 
 - Cloud Storage for bucket storage also saved the same file from firebase storage.
-- Firebase Auth for Authentication
+- [LOGIN] Firebase Auth for Authentication (Register directly via Firebase Auth, login via client mobile) SEMA's User [Here] https://drive.google.com/drive/folders/188t7BGahY6K8vtNgjU4YMGX6uLEKDXDN?usp=sharing
 - Firebase Firestore for database storage 
-- Firestore authorization. [Here](https://drive.google.com/drive/folders/1Gp5sQjIYxbW6Fu5HKFRpM8jZRftoajHi?usp=sharing)
+- Firestore authorization. [Here](https://drive.google.com/drive/folders/1CjhFf0V6C9u60lkbd295eUWtnPb0Pc6G?usp=sharing)
 - Firebase Storage for save profile photo and saved url link to Firestore.
 - Cloud Run 
 - SwaggerHub for UI API Documentations, Swagger Online Editor for edit API Documentations.
