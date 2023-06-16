@@ -15,7 +15,7 @@ import com.example.parentingapp.model.SettingViewModel
 import com.example.parentingapp.model.SettingViewModelFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-private val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

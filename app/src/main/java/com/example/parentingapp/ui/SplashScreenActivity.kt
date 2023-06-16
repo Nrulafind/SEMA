@@ -21,7 +21,7 @@ import com.example.parentingapp.model.SettingViewModel
 import com.example.parentingapp.model.SettingViewModelFactory
 
 
-private val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -61,6 +61,6 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-        },3000L)
+        }, 3000L)
     }
 }

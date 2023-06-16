@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/chat"
+        android:text="@string/contact"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -50,6 +50,7 @@
             android:layout_height="48dp"
             android:background="@drawable/rounded_message_gray"
             android:hint="@string/search_hint"
+            android:textColorHint="@color/black"
             android:paddingStart="20dp"
             android:paddingEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
             app:layout_constraintTop_toTopOf="@+id/search"
             app:tint="@color/black" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"

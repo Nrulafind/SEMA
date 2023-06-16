@@ -1,6 +1,5 @@
 package com.example.parentingapp.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
@@ -8,17 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parentingapp.R
 import com.example.parentingapp.data.Attendance
 import com.example.parentingapp.databinding.ItemAttendanceBinding
-import android.content.Context
 
-class AttendanceAdapter(private var listAttendance: ArrayList<Attendance>): RecyclerView.Adapter<AttendanceAdapter.MyViewHolder>() {
+class AttendanceAdapter(listAttendance: ArrayList<Attendance>) :
+    RecyclerView.Adapter<AttendanceAdapter.MyViewHolder>() {
 
-    val orderList = listAttendance.sortedBy { it.tanggal.toInt() }
-    class MyViewHolder(var binding: ItemAttendanceBinding): RecyclerView.ViewHolder(binding.root){
+    private val orderList = listAttendance.sortedBy { it.tanggal.toInt() }
+
+    class MyViewHolder(var binding: ItemAttendanceBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemAttendanceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemAttendanceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 

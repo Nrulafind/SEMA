@@ -2,23 +2,21 @@ package com.example.parentingapp.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.parentingapp.R
-import com.example.parentingapp.data.News
 import com.example.parentingapp.data.Post
-import com.example.parentingapp.databinding.ItemNewsBinding
 import com.example.parentingapp.databinding.ItemPostBinding
 
-class PostAdapter(private var listPost: ArrayList<Post>): RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
+class PostAdapter(private var listPost: ArrayList<Post>) :
+    RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(listPost: ArrayList<Post>){
+    fun setFilteredList(listPost: ArrayList<Post>) {
         this.listPost = listPost
         notifyDataSetChanged()
     }
-    class MyViewHolder(var binding: ItemPostBinding): RecyclerView.ViewHolder(binding.root){
+
+    class MyViewHolder(var binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 

@@ -117,8 +117,6 @@ class ScoreDetailActivity : AppCompatActivity() {
                                 val responseObject = JSONObject(result)
                                 val predict = responseObject.getJSONArray("results")
                                 val predict2: JSONArray = predict.get(0) as JSONArray
-                                //                                predict = quote2.getDouble(0)
-//                                binding.status.text = predict.toString()
                                 when (predict2.get(0).toString().toDouble()) {
                                     in 80.0..200.0 -> {
                                         binding.status.text = resources.getString(R.string.status1)

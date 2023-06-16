@@ -1,15 +1,15 @@
 package com.example.parentingapp.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.parentingapp.R
-import com.example.parentingapp.data.Month
 import com.example.parentingapp.adapter.MonthAdapter
+import com.example.parentingapp.data.Month
 import com.example.parentingapp.databinding.FragmentAttendanceBinding
 
 class AttendanceFragment : Fragment() {
@@ -20,7 +20,7 @@ class AttendanceFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentAttendanceBinding.inflate(inflater, container, false)
         return binding.root
@@ -51,7 +51,7 @@ class AttendanceFragment : Fragment() {
 
     }
 
-    private fun getData(){
+    private fun getData() {
         val adapter = MonthAdapter(list)
         binding.rvMonthList.adapter = adapter
     }

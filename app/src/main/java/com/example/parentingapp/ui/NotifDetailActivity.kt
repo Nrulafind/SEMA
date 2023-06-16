@@ -19,8 +19,6 @@ class NotifDetailActivity : AppCompatActivity() {
         binding.title.text = notif.title
         binding.description.text = notif.description
         binding.imageView2.setImageResource(notif.image!!)
-
-
     }
 
     companion object {

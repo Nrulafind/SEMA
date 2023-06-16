@@ -1,17 +1,13 @@
 package com.example.parentingapp.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.parentingapp.data.Course
 import com.example.parentingapp.data.Score
-import com.example.parentingapp.databinding.CourseItemBinding
 import com.example.parentingapp.databinding.ItemScoreBinding
-import com.example.parentingapp.ui.ScoreDetailActivity
 
-class ScoreAdapter (private var listScore: ArrayList<Score>) : RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder>() {
+class ScoreAdapter(private var listScore: ArrayList<Score>) :
+    RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder>() {
 
     class ScoreViewHolder(var binding: ItemScoreBinding) : RecyclerView.ViewHolder(binding.root)
 

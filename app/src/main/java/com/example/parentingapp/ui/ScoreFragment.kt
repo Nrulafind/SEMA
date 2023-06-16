@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.CourseAdapter
 import com.example.parentingapp.data.Course
-//import com.example.parentingapp.data.dummyScoreMenu
 import com.example.parentingapp.databinding.FragmentScoreBinding
-
 
 class ScoreFragment : Fragment() {
 
@@ -35,12 +32,8 @@ class ScoreFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
-//        binding.rvCourseList.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvCourseList.layoutManager = layoutManager
-//
-//        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-//        binding.rvCourseList.addItemDecoration(itemDecoration)
 
         list.add(Course(R.drawable.matematika, "Matematika"))
         list.add(Course(R.drawable.bd, "Bahasa Daerah"))
@@ -58,7 +51,7 @@ class ScoreFragment : Fragment() {
         getData()
     }
 
-    private fun getData(){
+    private fun getData() {
         val adapter = CourseAdapter(list)
         binding.rvCourseList.adapter = adapter
     }

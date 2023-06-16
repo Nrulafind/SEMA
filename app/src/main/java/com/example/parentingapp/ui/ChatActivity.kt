@@ -1,11 +1,11 @@
 package com.example.parentingapp.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.example.parentingapp.R
 import com.example.parentingapp.data.Contact
 import com.example.parentingapp.databinding.ActivityChatBinding
@@ -28,6 +28,10 @@ class ChatActivity : AppCompatActivity() {
 
         binding.contact.setOnClickListener {
             startActivity(Intent(this, ContactActivity::class.java))
+        }
+
+        binding.backIcon.setOnClickListener {
+            onBackPressed()
         }
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -53,13 +57,14 @@ class ChatActivity : AppCompatActivity() {
             val fromUid = firebaseUser.uid
             val rootRef = FirebaseFirestore.getInstance()
             val uidRef = rootRef.collection("teacher").document(fromUid)
-            uidRef.get().addOnCompleteListener { task->
+            uidRef.get().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document.exists()) {
                         val fromUser = document.toObject(Contact::class.java)
-                        val userRoomRef = rootRef.collection("rooms").document(fromUid).collection("userRooms")
-                        userRoomRef.get().addOnCompleteListener { t->
+                        val userRoomRef =
+                            rootRef.collection("rooms").document(fromUid).collection("userRooms")
+                        userRoomRef.get().addOnCompleteListener { t ->
                             if (t.isSuccessful) {
                                 val listOfToUserNames = ArrayList<String>()
                                 val listOfToUsers = ArrayList<Contact>()
@@ -72,15 +77,21 @@ class ChatActivity : AppCompatActivity() {
                                 }
 
                                 Log.d("TAG", listOfToUserNames.toString())
-                                val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfToUserNames)
+                                val arrayAdapter = ArrayAdapter(
+                                    this,
+                                    R.layout.item_chat,
+                                    R.id.tv_item_name,
+                                    listOfToUserNames
+                                )
                                 binding.listViw.adapter = arrayAdapter
-                                binding.listViw.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
-                                    val intent = Intent(this, ChatDetailActivity::class.java)
-                                    intent.putExtra("fromUser", fromUser)
-                                    intent.putExtra("toUser", listOfToUsers[position])
-                                    intent.putExtra("roomId", listOfRooms[position])
-                                    startActivity(intent)
-                                }
+                                binding.listViw.onItemClickListener =
+                                    AdapterView.OnItemClickListener { _, _, position, _ ->
+                                        val intent = Intent(this, ChatDetailActivity::class.java)
+                                        intent.putExtra("fromUser", fromUser)
+                                        intent.putExtra("toUser", listOfToUsers[position])
+                                        intent.putExtra("roomId", listOfRooms[position])
+                                        startActivity(intent)
+                                    }
                             }
                         }
                     }

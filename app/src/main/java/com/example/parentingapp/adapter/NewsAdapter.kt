@@ -8,19 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parentingapp.data.News
 import com.example.parentingapp.databinding.ItemNewsBinding
 import com.example.parentingapp.ui.NewsDetailActivity
-import com.example.parentingapp.ui.NotifDetailActivity
 import java.util.*
-import kotlin.collections.ArrayList
 
-class NewsAdapter(private var listNews: ArrayList<News>): RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
+class NewsAdapter(private var listNews: ArrayList<News>) :
+    RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(listNews: ArrayList<News>){
+    fun setFilteredList(listNews: ArrayList<News>) {
         this.listNews = listNews
         notifyDataSetChanged()
     }
 
-    class MyViewHolder(var binding: ItemNewsBinding): RecyclerView.ViewHolder(binding.root){
+    class MyViewHolder(var binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -37,7 +36,7 @@ class NewsAdapter(private var listNews: ArrayList<News>): RecyclerView.Adapter<N
         holder.binding.tvNewsTitle.text = newsData.title
         holder.binding.tvNewsDescription.text = newsData.description
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, NewsDetailActivity::class.java).apply {
                 putExtra(EXTRA_NEWS, newsData)
             }

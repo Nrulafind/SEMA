@@ -8,11 +8,11 @@ import com.example.parentingapp.data.Month
 import com.example.parentingapp.databinding.ItemMonthBinding
 import com.example.parentingapp.ui.DetailAttendanceActivity
 import com.example.parentingapp.ui.DetailAttendanceActivity.Companion.EXTRA_MONTH
-import com.example.parentingapp.ui.ScoreDetailActivity
 
-class MonthAdapter(private var listMonth: ArrayList<Month>) : RecyclerView.Adapter<MonthAdapter.MonthViewHolder>() {
+class MonthAdapter(private var listMonth: ArrayList<Month>) :
+    RecyclerView.Adapter<MonthAdapter.MonthViewHolder>() {
 
-    class MonthViewHolder(var binding: ItemMonthBinding) : RecyclerView.ViewHolder(binding.root){
+    class MonthViewHolder(var binding: ItemMonthBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -28,10 +28,11 @@ class MonthAdapter(private var listMonth: ArrayList<Month>) : RecyclerView.Adapt
         holder.binding.courseIcon.setImageResource(monthData.image)
         holder.binding.courseName.text = monthData.title
 
-        holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context, DetailAttendanceActivity::class.java).apply {
-                putExtra(EXTRA_MONTH, monthData.title)
-            }
+        holder.itemView.setOnClickListener {
+            val intent =
+                Intent(holder.itemView.context, DetailAttendanceActivity::class.java).apply {
+                    putExtra(EXTRA_MONTH, monthData.title)
+                }
 
             holder.itemView.context.startActivity(intent)
         }

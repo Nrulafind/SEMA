@@ -12,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+@Suppress("DEPRECATION")
 class DetailAttendanceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailAttendanceBinding
@@ -54,7 +55,7 @@ class DetailAttendanceActivity : AppCompatActivity() {
             }
     }
 
-    private fun getDataAttendance(userId : String, month: String?) {
+    private fun getDataAttendance(userId: String, month: String?) {
         var listAttendance: ArrayList<Attendance> = ArrayList()
         db.collection("student").document(userId)
             .collection("attendance").document(userId)
@@ -83,6 +84,7 @@ class DetailAttendanceActivity : AppCompatActivity() {
                 }
             }
     }
+
     companion object {
         const val EXTRA_MONTH = "extra_month"
     }

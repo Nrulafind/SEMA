@@ -1,10 +1,8 @@
 package com.example.parentingapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.parentingapp.data.News
-import com.example.parentingapp.data.Notification
-import com.example.parentingapp.databinding.ActivityDetailBinding
 import com.example.parentingapp.databinding.ActivityNewsDetailBinding
 
 @Suppress("DEPRECATION")
@@ -21,8 +19,6 @@ class NewsDetailActivity : AppCompatActivity() {
         binding.title.text = news.title
         binding.description.text = news.description
         binding.imageView2.setImageResource(news.image)
-
-
     }
 
     companion object {

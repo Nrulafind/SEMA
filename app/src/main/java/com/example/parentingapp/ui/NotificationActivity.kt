@@ -1,7 +1,7 @@
 package com.example.parentingapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parentingapp.R
 import com.example.parentingapp.adapter.NotificationAdapter

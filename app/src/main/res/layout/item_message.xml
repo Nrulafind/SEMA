@@ -34,6 +34,7 @@
         android:background="@drawable/rounded_message_green"
         android:maxWidth="250dp"
         android:padding="10dp"
+        android:textSize="14sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="@+id/tvMessenger"
