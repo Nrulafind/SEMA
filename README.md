@@ -77,7 +77,7 @@ https://backendsema-x6blq7wjaa-et.a.run.app/api/predict
 - Cloud Build 
 - Cloud Storage for bucket storage also saved the same file from firebase storage.
 - Firebase Auth for Authentication
-- Firebase Firestore for database storage and set authorization regarding 'uid' Firebase Auth should 'match Firestore documentID'.
+- Firebase Firestore for database storage and set authorization regarding 'uid' Firebase Auth should 'match Firestore documentID' like on the link bellow. [Here](https://drive.google.com/drive/folders/1Gp5sQjIYxbW6Fu5HKFRpM8jZRftoajHi?usp=sharing)
 - Firebase Storage for save profile photo and saved url link to Firestore.
 - Cloud Run 
 - SwaggerHub for UI API Documentations, Swagger Online Editor for edit API Documentations.
