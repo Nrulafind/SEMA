@@ -78,11 +78,11 @@ https://backendsema-x6blq7wjaa-et.a.run.app/api/predict
 - Cloud Storage for bucket storage also saved the same file from firebase storage.
 - Firebase Auth for Authentication
 - Firebase Firestore for database storage 
-- Firestore authorization regarding 'uid' Firebase Auth should 'match Firestore documentID' like on the link bellow. [Here](https://drive.google.com/drive/folders/1Gp5sQjIYxbW6Fu5HKFRpM8jZRftoajHi?usp=sharing)
+- Firestore authorization. [Here](https://drive.google.com/drive/folders/1Gp5sQjIYxbW6Fu5HKFRpM8jZRftoajHi?usp=sharing)
 - Firebase Storage for save profile photo and saved url link to Firestore.
 - Cloud Run 
 - SwaggerHub for UI API Documentations, Swagger Online Editor for edit API Documentations.
-- Refi App [Here](https://refiapp.io/)
+- Refi App [Here](https://refiapp.io/) - For input data needed to Firestore 
 - Github
 ## Library We Use
 - Flask
