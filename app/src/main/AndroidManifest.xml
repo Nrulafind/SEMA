@@ -34,8 +34,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.NotificationActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ui.DetailAttendanceActivity"
             android:exported="false"
