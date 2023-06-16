@@ -1,4 +1,4 @@
-# **:center: SEMA :center:**
+# **SEMA**
 
 Student monitoring application for parents. This application displays various updates on student activities at school and provides daily attendance reports and student grades in each subject. In the application there is a feature that will categorize students in several statuses according to the prediction results that have been made in the machine learning model.
 <br>
