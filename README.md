@@ -17,8 +17,9 @@ Key success factors for students is building effective communication between sch
 ## [Here The Link of the ML Division](https://github.com/Nrulafind/SEMA/tree/ML)
 ## [Here The Link of the MD Division](https://github.com/Nrulafind/SEMA/tree/MD)
 ## [Here The Link of the CC Division](https://github.com/Nrulafind/SEMA/blob/CC/)
-## System Architect
-![Architect](https://github.com/Nrulafind/SEMA/assets/79900731/9dbfdf5f-ad5b-4110-b063-4776a939aa22)
+## System Architect 
+![SEMA'S SYSTEM ARCHITECT ](https://github.com/Nrulafind/SEMA/assets/79900731/8d43ee87-7403-4303-8397-bef026ff5739)
+
 
 ## The App
 <img src="https://github.com/Nrulafind/SEMA/assets/79900731/6547ede8-a162-4668-9aea-332a03a0537c" width="500" height="1200">
