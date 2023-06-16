@@ -8,7 +8,7 @@ For this application we using linier regression model to predict the final score
 
 ## Data Preprocessing 
 - Data Colecting
-to make the machine learning model, we need to collect the data that needed to make a score prediction. we collecting the data from kaggle : https://www.kaggle.com/datasets/rkiattisak/student-performance-in-mathematics
+  to make the machine learning model, we need to collect the data that needed to make a score prediction. we collecting the data from kaggle : https://www.kaggle.com/datasets/rkiattisak/student-performance-in-mathematics
 - Data Transformation
 after collecting the data, we transform that data so it can be used to modelling the machine learning. using one hot encoding we transform 'gender' column to 'M' and 'F' column 
 - Data Reduction
