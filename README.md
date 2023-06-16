@@ -5,7 +5,7 @@ Student monitoring application for parents. This application displays various up
 
 ## **Links**
 [Click here](https://drive.google.com/file/d/1E8lC2RtEVmq-mZdSoXQbUgbY4slkkDT-/view?usp=sharing) to download the application<br>
-[Click here](hhttps://drive.google.com/file/d/17ZlpaV5t_vs7NTasVfBMXWH6J1IJ1fWg/view?usp=sharing) to see a demo of the application
+[Click here](https://drive.google.com/file/d/17ZlpaV5t_vs7NTasVfBMXWH6J1IJ1fWg/view?usp=sharing) to see a demo of the application
 <br>
 
 ## **Development**
@@ -24,4 +24,4 @@ Applications are developed using Android Jetpack. Data storage using Firestore d
 
 | Chat | | |
 |------|--------------|---------|
-|![Contoh Gambar](img/detail_chat_page.jpg)| | |
+|<img src="img/detail_chat_page.jpg" alt="Nama Gambar" width="180px" />| | |
