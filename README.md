@@ -19,3 +19,15 @@ Key success factors for students is building effective communication between sch
 ## [Here The Link of the CC Division](https://github.com/Nrulafind/SEMA/blob/CC/)
 ## System Architect
 ![Architect](https://github.com/Nrulafind/SEMA/assets/79900731/9dbfdf5f-ad5b-4110-b063-4776a939aa22)
+
+## The App
+![Splash Screen](https://github.com/Nrulafind/SEMA/assets/79900731/6547ede8-a162-4668-9aea-332a03a0537c)
+![login_page](https://github.com/Nrulafind/SEMA/assets/79900731/e0f5f277-9bf9-4c6c-a6a0-3c199a3ef9e4)
+![home_page](https://github.com/Nrulafind/SEMA/assets/79900731/96a9c4c5-926f-4265-8e42-4d5c1e731549)
+![search_page](https://github.com/Nrulafind/SEMA/assets/79900731/645ce9bd-db44-44c1-b6ea-f8d670c22bfc)
+![score_page](https://github.com/Nrulafind/SEMA/assets/79900731/662f5240-3fe2-42d1-a85b-379741c0226a)
+![score_detail_page](https://github.com/Nrulafind/SEMA/assets/79900731/acf09744-50d2-4fc9-96da-aa609f4982e7)
+![profile_page](https://github.com/Nrulafind/SEMA/assets/79900731/6857b822-4b52-4692-8a4c-3332ef5bff8f)
+![attendance_page](https://github.com/Nrulafind/SEMA/assets/79900731/c5280735-6620-458d-a1fd-56ceb300d3a1)
+![attendance_detail_page](https://github.com/Nrulafind/SEMA/assets/79900731/dfee0aad-cd02-41a4-9e6c-a901cf1cbd3c)
+![notifications_page](https://github.com/Nrulafind/SEMA/assets/79900731/ec72da05-9f57-4cdf-86cc-af5d1bfb49a3)
