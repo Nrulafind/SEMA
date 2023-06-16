@@ -13,6 +13,9 @@ Repository for Capstone Product Based Bangkit C23-PS367
 ## General Information About SEMA
 
 Key success factors for students is building effective communication between school parties, teachers, and parents. By building effective communication, it will create a strong understanding about the student itself between parents and teachers. One of ways to build strong and effective communication is by monitoring student progress and performance in school. But, unfortunately, monitoring student performance is just organized once in each semester by giving a report of each student's score in each semester. Due to this condition, building a platform for monitoring students' performance and progress will become an effective way to solve the problem. It will come up as an android app for monitoring student progress and performance. This apps will be able to track student progress, such as attendance, score prediction, and chat between teachers and parents. By tracking student progress, parents can discuss with their students and teachers about steps or decisions which need to be taken in order to improve their performance. So, that it can be a preventative step for parents to save their children from failing in class.
+### Note
+this application does not provide a register feature. We only make one layer application for parents. Registration must be managed via the school operator / if you want to do the same, please directly connect the project to firebase auth.
+Or directly log in via the client (mobile apps) with this user id user
 
 ## [Here The Link of the ML Division](https://github.com/Nrulafind/SEMA/tree/ML)
 ## [Here The Link of the MD Division](https://github.com/Nrulafind/SEMA/tree/MD)
@@ -21,14 +24,4 @@ Key success factors for students is building effective communication between sch
 ![SEMA'S SYSTEM ARCHITECT ](https://github.com/Nrulafind/SEMA/assets/79900731/8d43ee87-7403-4303-8397-bef026ff5739)
 
 
-## The App
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/6547ede8-a162-4668-9aea-332a03a0537c" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/e0f5f277-9bf9-4c6c-a6a0-3c199a3ef9e4" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/96a9c4c5-926f-4265-8e42-4d5c1e731549" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/645ce9bd-db44-44c1-b6ea-f8d670c22bfc" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/662f5240-3fe2-42d1-a85b-379741c0226a" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/acf09744-50d2-4fc9-96da-aa609f4982e7" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/c5280735-6620-458d-a1fd-56ceb300d3a1" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/dfee0aad-cd02-41a4-9e6c-a901cf1cbd3c" width="500" height="1200">
-<img src="https://github.com/Nrulafind/SEMA/assets/79900731/ec72da05-9f57-4cdf-86cc-af5d1bfb49a3" width="500" height="1200">
 
