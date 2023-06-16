@@ -30,13 +30,22 @@ class ChatActivity : AppCompatActivity() {
         }
 
         firebaseAuth = FirebaseAuth.getInstance()
+        authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser == null) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        firebaseAuth = FirebaseAuth.getInstance()
         googleApiClient = GoogleApiClient.Builder(this).addApi(Auth.GOOGLE_SIGN_IN_API).build()
     }
 
     override fun onStart() {
         super.onStart()
-        googleApiClient!!.connect()
-        firebaseAuth!!.addAuthStateListener( this.authStateListener!!)
+        googleApiClient?.connect()
+        firebaseAuth?.addAuthStateListener(this.authStateListener!!)
 
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {

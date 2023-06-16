@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 data class User(
-    val id: String,
+    val id: String? = "",
     val name: String,
     val email: String,
-    val photoUrl: String? = null,
+    val photoUrl: Int,
 )
