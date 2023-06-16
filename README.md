@@ -19,4 +19,4 @@ Key success factors for students is building effective communication between sch
 ## [Here The Link of the CC Division](https://github.com/Nrulafind/SEMA/blob/CC/)
 ## System Architect
 [Link Photo](https://drive.google.com/file/d/1zbIBmr1dAyLvfHa5vjftMsKZXRKyvOnu/view?usp=drive_link)
-![Architect](https://github.com/Nrulafind/SEMA/assets/79900731/b724806a-78cd-44ab-b265-686aed370cbf)
+![Architect](https://github.com/Nrulafind/SEMA/assets/79900731/9dbfdf5f-ad5b-4110-b063-4776a939aa22)
