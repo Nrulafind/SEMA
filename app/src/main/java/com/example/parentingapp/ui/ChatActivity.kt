@@ -26,6 +26,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
         binding.contact.setOnClickListener {
             startActivity(Intent(this, ContactActivity::class.java))
         }

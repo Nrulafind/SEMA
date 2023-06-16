@@ -19,26 +19,22 @@
             android:exported="false" />
         <activity
             android:name=".ui.ChatDetailActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:exported="false"/>
         <activity
             android:name=".ui.NotifDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ContactActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ui.ChatActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:exported="false"/>
         <activity
             android:name=".ui.NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.DetailAttendanceActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ui.SettingActivity"
             android:exported="false" />
