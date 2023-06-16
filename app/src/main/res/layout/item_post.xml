@@ -49,6 +49,7 @@
                 android:layout_toEndOf="@+id/iv_teacher"
                 android:text="@string/teacher"
                 android:textSize="12sp"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,6 +65,7 @@
                 android:layout_toEndOf="@+id/iv_teacher"
                 android:text="@string/time_upload"
                 android:textSize="12sp"
+                android:textColor="@color/black"
                 android:textStyle="italic" />
 
         </RelativeLayout>

@@ -48,7 +48,7 @@
             android:layout_toEndOf="@+id/tv_date"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textAllCaps="true"
             android:text="@string/present" />
     </RelativeLayout>

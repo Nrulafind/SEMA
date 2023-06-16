@@ -32,6 +32,8 @@ class ScoreDetailActivity : AppCompatActivity() {
         binding = ActivityScoreDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val course = intent.getStringExtra(EXTRA_COURSE)
 
         binding.courseName.text = course

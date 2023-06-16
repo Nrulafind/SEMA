@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/student_name"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/student_grade"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/student_grade"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/student_semester"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/attendance"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
                 android:id="@+id/keterangan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,11 +120,11 @@
                     android:id="@+id/present_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/present"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="11sp" />
 
                 <ImageView
                     android:id="@+id/sick_color"
@@ -138,11 +138,11 @@
                     android:id="@+id/sick_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/sick"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="11sp" />
 
                 <ImageView
                     android:id="@+id/permit_color"
@@ -156,11 +156,11 @@
                     android:id="@+id/permit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/permit"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="11sp" />
 
                 <ImageView
                     android:id="@+id/alpha_color"
@@ -174,11 +174,11 @@
                     android:id="@+id/alpha_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/alpha"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="11sp" />
 
                 <ImageView
                     android:id="@+id/holiday_color"
@@ -192,11 +192,11 @@
                     android:id="@+id/holiday_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/holiday"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
