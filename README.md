@@ -21,8 +21,8 @@ Key success factors for students is building effective communication between sch
 ![Architect](https://github.com/Nrulafind/SEMA/assets/79900731/9dbfdf5f-ad5b-4110-b063-4776a939aa22)
 
 ## The App
-![Splash Screen](https://github.com/Nrulafind/SEMA/assets/79900731/6547ede8-a162-4668-9aea-332a03a0537c)
-![login_page](https://github.com/Nrulafind/SEMA/assets/79900731/e0f5f277-9bf9-4c6c-a6a0-3c199a3ef9e4)
+![Splash Screen](https://github.com/Nrulafind/SEMA/assets/79900731/6547ede8-a162-4668-9aea-332a03a0537c|width=250)
+![login_page](https://github.com/Nrulafind/SEMA/assets/79900731/e0f5f277-9bf9-4c6c-a6a0-3c199a3ef9e4|width=250)
 ![home_page](https://github.com/Nrulafind/SEMA/assets/79900731/96a9c4c5-926f-4265-8e42-4d5c1e731549)
 ![search_page](https://github.com/Nrulafind/SEMA/assets/79900731/645ce9bd-db44-44c1-b6ea-f8d670c22bfc)
 ![score_page](https://github.com/Nrulafind/SEMA/assets/79900731/662f5240-3fe2-42d1-a85b-379741c0226a)
