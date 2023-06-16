@@ -3,6 +3,7 @@ package com.example.parentingapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.parentingapp.R
@@ -65,11 +66,12 @@ class ChatActivity : AppCompatActivity() {
                                 val listOfRooms = ArrayList<String>()
                                 for (d in t.result) {
                                     val toUser = d.toObject(Contact::class.java)
-                                    listOfToUserNames.add(toUser.name)
+                                    listOfToUserNames.add(toUser.nama)
                                     listOfToUsers.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
 
+                                Log.d("TAG", listOfToUserNames.toString())
                                 val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfToUserNames)
                                 binding.listViw.adapter = arrayAdapter
                                 binding.listViw.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->

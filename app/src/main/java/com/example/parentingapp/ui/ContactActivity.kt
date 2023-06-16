@@ -41,7 +41,7 @@ class ContactActivity : AppCompatActivity() {
 
         val firebaseUser = FirebaseAuth.getInstance().currentUser
 
-        val uid = firebaseUser?.uid
+//        val uid = firebaseUser?.uid
 
 //        val contact = hashMapOf(
 //            "MdtSsy6ihHTt8A7Ojlh9tkUC6Pn2" to ContactUser("MdtSsy6ihHTt8A7Ojlh9tkUC6Pn2", "Guru Sejarah")
@@ -79,8 +79,8 @@ class ContactActivity : AppCompatActivity() {
 //                                val listOfToUsers = ArrayList<Contact>()
 //                                val listOfRooms = ArrayList<String>()
                                 data?.let {
-                                    for ((_, value) in data){
-                                        val v = value as Map<*, *>
+                                    for ((_, _) in data){
+                                        val v = it as Map<*, *>
                                         val name = v["nama"]
                                         contact = Contact(
                                             "", name.toString()

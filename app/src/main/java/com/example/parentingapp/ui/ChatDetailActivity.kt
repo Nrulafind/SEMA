@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parentingapp.R
 import com.example.parentingapp.data.Contact
@@ -59,16 +61,16 @@ class ChatDetailActivity : AppCompatActivity() {
             fromRooms!![roomId] = true
             fromUser.rooms = fromRooms
             rootRef!!.collection("teacher").document(fromUid!!).set(fromUser, SetOptions.merge())
-            rootRef!!.collection("contact").document(toUid).collection("userContact").document(fromUid!!).set(fromUser, SetOptions.merge())
-            rootRef!!.collection("rooms").document(toUid).collection("userRooms").document(roomId).set(fromUser, SetOptions.merge())
+            rootRef!!.collection("contact").document(fromUid!!).collection("userContact").document(fromUid!!).set(toUser, SetOptions.merge())
+            rootRef!!.collection("rooms").document(fromUid!!).collection("userRooms").document(roomId).set(fromUser, SetOptions.merge())
 
             if (toRooms == null) {
                 toRooms = mutableMapOf()
             }
             toRooms!![roomId] = true
             toUser.rooms = toRooms
-            rootRef!!.collection("teacher").document(toUid).set(toUser, SetOptions.merge())
-            rootRef!!.collection("contact").document(fromUid!!).collection("userContact").document(toUid).set(toUser, SetOptions.merge())
+            rootRef!!.collection("teacher").document(fromUid!!).set(toUser, SetOptions.merge())
+            rootRef!!.collection("contact").document(fromUid!!).collection("userContact").document(fromUid!!).set(toUser, SetOptions.merge())
             rootRef!!.collection("rooms").document(fromUid!!).collection("userRooms").document(roomId).set(toUser, SetOptions.merge())
 
             val messageText = binding.editText.text.toString()
@@ -76,6 +78,9 @@ class ChatDetailActivity : AppCompatActivity() {
             rootRef!!.collection("messages").document(roomId).collection("roomMessages").add(message)
             binding.editText.text.clear()
         }
+
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
 
         val query = rootRef!!.collection("messages").document(roomId).collection("roomMessages").orderBy("sentAt", Query.Direction.ASCENDING)
         val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
@@ -91,7 +96,9 @@ class ChatDetailActivity : AppCompatActivity() {
 
     inner class MessageViewHolder internal constructor(private val view: View) : RecyclerView.ViewHolder(view){
         internal fun setMessage(message: Message) {
-            binding.textView4.text = message.messageText
+            val textView = view.findViewById<TextView>(R.id.send_message)
+            textView.text = message.messageText
+//            binding.textView4.text = message.messageText
         }
     }
 
